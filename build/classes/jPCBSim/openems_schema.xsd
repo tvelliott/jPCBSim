@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="openEMS" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="Excitation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="FillColor" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element ref="EdgeColor" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element ref="Primitives" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element ref="Weight" minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute name="Type" type="xs:string" />
+      <xs:attribute name="f0" type="xs:string" />
+      <xs:attribute name="fc" type="xs:string" />
+      <xs:attribute name="ID" type="xs:string" />
+      <xs:attribute name="Name" type="xs:string" />
+      <xs:attribute name="Number" type="xs:string" />
+      <xs:attribute name="Frequency" type="xs:string" />
+      <xs:attribute name="Delay" type="xs:string" />
+      <xs:attribute name="Excite" type="xs:string" />
+      <xs:attribute name="PropDir" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FillColor">
+    <xs:complexType>
+      <xs:attribute name="R" type="xs:string" />
+      <xs:attribute name="G" type="xs:string" />
+      <xs:attribute name="B" type="xs:string" />
+      <xs:attribute name="a" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EdgeColor">
+    <xs:complexType>
+      <xs:attribute name="R" type="xs:string" />
+      <xs:attribute name="G" type="xs:string" />
+      <xs:attribute name="B" type="xs:string" />
+      <xs:attribute name="a" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Primitives">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Box" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="P1" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="X" type="xs:string" />
+                  <xs:attribute name="Y" type="xs:string" />
+                  <xs:attribute name="Z" type="xs:string" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="P2" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="X" type="xs:string" />
+                  <xs:attribute name="Y" type="xs:string" />
+                  <xs:attribute name="Z" type="xs:string" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Priority" type="xs:string" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Polygon" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Vertex" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="X1" type="xs:string" />
+                  <xs:attribute name="X2" type="xs:string" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Priority" type="xs:string" />
+            <xs:attribute name="Elevation" type="xs:string" />
+            <xs:attribute name="NormDir" type="xs:string" />
+            <xs:attribute name="QtyVertices" type="xs:string" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="LinPoly" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Vertex" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="X1" type="xs:string" />
+                  <xs:attribute name="X2" type="xs:string" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Priority" type="xs:string" />
+            <xs:attribute name="Elevation" type="xs:string" />
+            <xs:attribute name="NormDir" type="xs:string" />
+            <xs:attribute name="QtyVertices" type="xs:string" />
+            <xs:attribute name="Length" type="xs:string" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Cylinder" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="P1" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="X" type="xs:string" />
+                  <xs:attribute name="Y" type="xs:string" />
+                  <xs:attribute name="Z" type="xs:string" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="P2" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="X" type="xs:string" />
+                  <xs:attribute name="Y" type="xs:string" />
+                  <xs:attribute name="Z" type="xs:string" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Priority" type="xs:string" />
+            <xs:attribute name="Radius" type="xs:string" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Weight">
+    <xs:complexType>
+      <xs:attribute name="Epsilon" type="xs:string" />
+      <xs:attribute name="Mue" type="xs:string" />
+      <xs:attribute name="Kappa" type="xs:string" />
+      <xs:attribute name="Sigma" type="xs:string" />
+      <xs:attribute name="Density" type="xs:string" />
+      <xs:attribute name="X" type="xs:string" />
+      <xs:attribute name="Y" type="xs:string" />
+      <xs:attribute name="Z" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="openEMS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="Excitation" />
+        <xs:element ref="FillColor" />
+        <xs:element ref="EdgeColor" />
+        <xs:element ref="Primitives" />
+        <xs:element ref="Weight" />
+        <xs:element name="FDTD">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="Excitation" minOccurs="0" maxOccurs="unbounded" />
+              <xs:element name="BoundaryCond" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="xmin" type="xs:string" />
+                  <xs:attribute name="xmax" type="xs:string" />
+                  <xs:attribute name="ymin" type="xs:string" />
+                  <xs:attribute name="ymax" type="xs:string" />
+                  <xs:attribute name="zmin" type="xs:string" />
+                  <xs:attribute name="zmax" type="xs:string" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="NumberOfTimesteps" type="xs:string" />
+            <xs:attribute name="TimeStep" type="xs:string" />
+            <xs:attribute name="TimeStepFactor" type="xs:string" />
+            <xs:attribute name="OverSampling" type="xs:string" />
+            <xs:attribute name="endCriteria" type="xs:string" />
+            <xs:attribute name="f_max" type="xs:string" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ContinuousStructure">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ParameterSet" type="xs:string" minOccurs="0" msdata:Ordinal="1" />
+              <xs:element name="RectilinearGrid" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="XLines" nillable="true" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:simpleContent msdata:ColumnName="XLines_Text" msdata:Ordinal="1">
+                          <xs:extension base="xs:string">
+                            <xs:attribute name="Qty" type="xs:string" />
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="YLines" nillable="true" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:simpleContent msdata:ColumnName="YLines_Text" msdata:Ordinal="1">
+                          <xs:extension base="xs:string">
+                            <xs:attribute name="Qty" type="xs:string" />
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="ZLines" nillable="true" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:simpleContent msdata:ColumnName="ZLines_Text" msdata:Ordinal="1">
+                          <xs:extension base="xs:string">
+                            <xs:attribute name="Qty" type="xs:string" />
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="DeltaUnit" type="xs:string" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Properties" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Material" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element ref="FillColor" minOccurs="0" maxOccurs="unbounded" />
+                          <xs:element ref="EdgeColor" minOccurs="0" maxOccurs="unbounded" />
+                          <xs:element ref="Primitives" minOccurs="0" maxOccurs="unbounded" />
+                          <xs:element name="Property" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:attribute name="Epsilon" type="xs:string" />
+                              <xs:attribute name="Mue" type="xs:string" />
+                              <xs:attribute name="Kappa" type="xs:string" />
+                              <xs:attribute name="Sigma" type="xs:string" />
+                              <xs:attribute name="Density" type="xs:string" />
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element ref="Weight" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                        <xs:attribute name="ID" type="xs:string" />
+                        <xs:attribute name="Name" type="xs:string" />
+                        <xs:attribute name="Isotropy" type="xs:string" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="LorentzMaterial" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element ref="FillColor" minOccurs="0" maxOccurs="unbounded" />
+                          <xs:element ref="EdgeColor" minOccurs="0" maxOccurs="unbounded" />
+                          <xs:element ref="Primitives" minOccurs="0" maxOccurs="unbounded" />
+                          <xs:element name="Property" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:attribute name="Epsilon" type="xs:string" />
+                              <xs:attribute name="Mue" type="xs:string" />
+                              <xs:attribute name="Kappa" type="xs:string" />
+                              <xs:attribute name="Sigma" type="xs:string" />
+                              <xs:attribute name="Density" type="xs:string" />
+                              <xs:attribute name="EpsilonPlasmaFrequency" type="xs:string" />
+                              <xs:attribute name="EpsilonLorPoleFrequency" type="xs:string" />
+                              <xs:attribute name="EpsilonRelaxTime" type="xs:string" />
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element ref="Weight" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                        <xs:attribute name="ID" type="xs:string" />
+                        <xs:attribute name="Name" type="xs:string" />
+                        <xs:attribute name="Isotropy" type="xs:string" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Metal" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element ref="FillColor" minOccurs="0" maxOccurs="unbounded" />
+                          <xs:element ref="EdgeColor" minOccurs="0" maxOccurs="unbounded" />
+                          <xs:element ref="Primitives" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                        <xs:attribute name="ID" type="xs:string" />
+                        <xs:attribute name="Name" type="xs:string" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="LumpedElement" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element ref="FillColor" minOccurs="0" maxOccurs="unbounded" />
+                          <xs:element ref="EdgeColor" minOccurs="0" maxOccurs="unbounded" />
+                          <xs:element ref="Primitives" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                        <xs:attribute name="ID" type="xs:string" />
+                        <xs:attribute name="Name" type="xs:string" />
+                        <xs:attribute name="Direction" type="xs:string" />
+                        <xs:attribute name="Caps" type="xs:string" />
+                        <xs:attribute name="R" type="xs:string" />
+                        <xs:attribute name="C" type="xs:string" />
+                        <xs:attribute name="L" type="xs:string" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element ref="Excitation" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element name="ProbeBox" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element ref="FillColor" minOccurs="0" maxOccurs="unbounded" />
+                          <xs:element ref="EdgeColor" minOccurs="0" maxOccurs="unbounded" />
+                          <xs:element ref="Primitives" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                        <xs:attribute name="ID" type="xs:string" />
+                        <xs:attribute name="Name" type="xs:string" />
+                        <xs:attribute name="Number" type="xs:string" />
+                        <xs:attribute name="Type" type="xs:string" />
+                        <xs:attribute name="Weight" type="xs:string" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="DumpBox" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element ref="FillColor" minOccurs="0" maxOccurs="unbounded" />
+                          <xs:element ref="EdgeColor" minOccurs="0" maxOccurs="unbounded" />
+                          <xs:element ref="Primitives" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                        <xs:attribute name="ID" type="xs:string" />
+                        <xs:attribute name="Name" type="xs:string" />
+                        <xs:attribute name="Number" type="xs:string" />
+                        <xs:attribute name="Type" type="xs:string" />
+                        <xs:attribute name="Weight" type="xs:string" />
+                        <xs:attribute name="DumpType" type="xs:string" />
+                        <xs:attribute name="DumpMode" type="xs:string" />
+                        <xs:attribute name="FileType" type="xs:string" />
+                        <xs:attribute name="SubSampling" type="xs:string" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="CoordSystem" type="xs:string" />
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

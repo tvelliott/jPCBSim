@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<openEMS>
+    <FDTD NumberOfTimesteps="1000000000" OverSampling="64" endCriteria="1e-03" f_max="5e9">
+        <Excitation Type="0" f0="0" fc="5e9"/>
+        <BoundaryCond xmin="PML_8" xmax="PML_8" ymin="PML_8" ymax="PML_8" zmin="PML_8" zmax="PML_8"/>
+    </FDTD>
+    <ContinuousStructure CoordSystem="0">
+        <RectilinearGrid DeltaUnit="1">
+            <XLines Qty="97">0.0762102,0.0772098,0.007155688000000001,0.008592312000000001,0.056939688,0.058376312,0.033317688,0.034754311999999996,0.020109688,0.021546311999999998,0.046017688,0.047454312,0.067607688,0.069044312,0.084117688,0.085554312,0.08687,0.07798,0.07544,0.00406,0.07088,0.07162,0.0851,0.08584,0.08586,0.08332,0.08406,0.08155,0.08228,0.08153,0.07977,0.08051,0.07974,0.07873,0.07875,0.07695,0.07443,0.07517,0.07266,0.07339,0.07264,0.08179,0.08433,0.03099,0.0034087,0.0885413,-0.015624279711066807,-0.013827536190153079,-0.012030792669239348,-0.010234049148325618,-0.008437305627411889,-0.00664056210649816,-0.00484381858558443,-0.003047075064670699,-0.0012503315437569704,5.464119771567584E-4,0.002343155498070487,0.005936642539897948,0.007733386060811677,0.00953012958172541,0.011326873102639138,0.013123616623552867,0.014920360144466596,0.016717103665380324,0.018513847186294057,0.022107334228121514,0.023904077749035246,0.02570082126994897,0.027497564790862704,0.029294308311776436,0.032887795353603894,0.03648128239543135,0.03827802591634508,0.04007476943725881,0.04187151295817254,0.04366825647908627,0.045465,0.049058487041827456,0.05085523056274119,0.05265197408365492,0.05444871760456865,0.05624546112548237,0.059838948167309836,0.06163569168822357,0.0634324352091373,0.06522917873005103,0.06702592225096475,0.09038358802284324,0.09218033154375697,0.0939770750646707,0.09577381858558442,0.09757056210649816,0.09936730562741189,0.10116404914832562,0.10296079266923935,0.10475753619015307,0.1065542797110668,</XLines>
+            <YLines Qty="74">0.0363302,0.037329799999999996,0.041699688,0.043136311999999996,0.00432,0.0475,0.06452,0.00204,0.00405,0.03886,0.07163,0.07264,0.0022744,0.0760913,-0.01825579266923935,-0.016459049148325623,-0.014662305627411892,-0.012865562106498162,-0.011068818585584433,-0.009272075064670704,-0.0074753315437569735,-0.005678588022843243,-0.003881844501929514,-0.0020851009810157854,-2.8835746010205665E-4,0.0015083860608116756,0.0033051295817254044,0.005101873102639133,0.006898616623552865,0.008695360144466594,0.010492103665380323,0.012288847186294052,0.01408559070720778,0.015882334228121513,0.017679077749035238,0.01947582126994897,0.021272564790862702,0.023069308311776428,0.02486605183269016,0.026662795353603892,0.028459538874517618,0.03025628239543135,0.03205302591634508,0.03384976943725881,0.03564651295817254,0.04103674352091373,0.04463023056274118,0.04642697408365491,0.048223717604568644,0.05002046112548238,0.05181720464639611,0.05361394816730983,0.05541069168822356,0.05720743520913729,0.059004178730051024,0.060800922250964756,0.06259766577187849,0.06619115281370594,0.06798789633461967,0.0697846398555334,0.07337812689736085,0.07517487041827459,0.07697161393918832,0.07876835746010205,0.08056510098101578,0.08236184450192952,0.08415858802284323,0.08595533154375697,0.0877520750646707,0.08954881858558443,0.09134556210649816,0.09314230562741188,0.09493904914832561,0.09673579266923935,</YLines>
+            <ZLines Qty="26">7.874E-4,0.0,5.9055E-4,1.9685E-4,-0.019370478730051027,-0.017573735209137298,-0.015776991688223566,-0.013980248167309837,-0.012183504646396108,-0.01038676112548238,-0.008590017604568649,-0.006793274083654918,-0.0049965305627411895,-0.0031997870418274607,-0.001403043520913732,0.002190443520913729,0.003987187041827458,0.00578393056274119,0.007580674083654919,0.009377417604568648,0.011174161125482376,0.012970904646396105,0.014767648167309837,0.016564391688223563,0.018361135209137295,0.020157878730051027,</ZLines>
+        </RectilinearGrid>
+        <Properties>
+            <LorentzMaterial ID="31" Name=" 'Dielectric_DL01'" Isotropy="1">
+                <FillColor R="0" G="100" B="0" a="255"/>
+                <EdgeColor R="0" G="150" B="0" a="255"/>
+                <Primitives>
+                    <Box Priority="100">
+                        <P1 X="0.0025400000000000006" Y="0.0015199999999999936" Z="0.0"/>
+                        <P2 X="0.08941" Y="0.07696" Z="7.874E-4"/>
+                    </Box>
+                </Primitives>
+                <Property Epsilon="4.2" Mue="1.0" Kappa="0.0039" EpsilonPlasmaFrequency="5.0e9" EpsilonLorPoleFrequency="12.57e9" EpsilonRelaxTime="2.294e-11"/>
+            </LorentzMaterial>
+            <Metal ID="3" Name=" 'via'">
+                <FillColor R="240" G="240" B="240" a="255"/>
+                <EdgeColor R="240" G="240" B="240" a="255"/>
+                <Primitives>
+                    <Box Priority="300">
+                        <P1 X="0.007155688000000001" Y="0.041699688" Z="-1.0E-5"/>
+                        <P2 X="0.008592312000000001" Y="0.043136311999999996" Z="7.974E-4"/>
+                    </Box>
+                </Primitives>
+            </Metal>
+            <Metal ID="4" Name=" 'via'">
+                <FillColor R="240" G="240" B="240" a="255"/>
+                <EdgeColor R="240" G="240" B="240" a="255"/>
+                <Primitives>
+                    <Box Priority="300">
+                        <P1 X="0.056939688" Y="0.041699688" Z="-1.0E-5"/>
+                        <P2 X="0.058376312" Y="0.043136311999999996" Z="7.974E-4"/>
+                    </Box>
+                </Primitives>
+            </Metal>
+            <Metal ID="5" Name=" 'via'">
+                <FillColor R="240" G="240" B="240" a="255"/>
+                <EdgeColor R="240" G="240" B="240" a="255"/>
+                <Primitives>
+                    <Box Priority="300">
+                        <P1 X="0.033317688" Y="0.041699688" Z="-1.0E-5"/>
+                        <P2 X="0.034754311999999996" Y="0.043136311999999996" Z="7.974E-4"/>
+                    </Box>
+                </Primitives>
+            </Metal>
+            <Metal ID="6" Name=" 'via'">
+                <FillColor R="240" G="240" B="240" a="255"/>
+                <EdgeColor R="240" G="240" B="240" a="255"/>
+                <Primitives>
+                    <Box Priority="300">
+                        <P1 X="0.020109688" Y="0.041699688" Z="-1.0E-5"/>
+                        <P2 X="0.021546311999999998" Y="0.043136311999999996" Z="7.974E-4"/>
+                    </Box>
+                </Primitives>
+            </Metal>
+            <Metal ID="7" Name=" 'via'">
+                <FillColor R="240" G="240" B="240" a="255"/>
+                <EdgeColor R="240" G="240" B="240" a="255"/>
+                <Primitives>
+                    <Box Priority="300">
+                        <P1 X="0.046017688" Y="0.041699688" Z="-1.0E-5"/>
+                        <P2 X="0.047454312" Y="0.043136311999999996" Z="7.974E-4"/>
+                    </Box>
+                </Primitives>
+            </Metal>
+            <Metal ID="8" Name=" 'via'">
+                <FillColor R="240" G="240" B="240" a="255"/>
+                <EdgeColor R="240" G="240" B="240" a="255"/>
+                <Primitives>
+                    <Box Priority="300">
+                        <P1 X="0.067607688" Y="0.041699688" Z="-1.0E-5"/>
+                        <P2 X="0.069044312" Y="0.043136311999999996" Z="7.974E-4"/>
+                    </Box>
+                </Primitives>
+            </Metal>
+            <Metal ID="9" Name=" 'via'">
+                <FillColor R="240" G="240" B="240" a="255"/>
+                <EdgeColor R="240" G="240" B="240" a="255"/>
+                <Primitives>
+                    <Box Priority="300">
+                        <P1 X="0.084117688" Y="0.041699688" Z="-1.0E-5"/>
+                        <P2 X="0.085554312" Y="0.043136311999999996" Z="7.974E-4"/>
+                    </Box>
+                </Primitives>
+            </Metal>
+            <Metal ID="10" Name=" 'Bottom_copper'">
+                <FillColor R="156" G="120" B="19" a="255"/>
+                <EdgeColor R="156" G="120" B="19" a="255"/>
+                <Primitives>
+                    <Polygon Priority="200" Elevation="0.0" NormDir="2" QtyVertices="8">
+                        <Vertex X1="0.08687" X2="0.00432"/>
+                        <Vertex X1="0.08687" X2="0.0475"/>
+                        <Vertex X1="0.07798" X2="0.0475"/>
+                        <Vertex X1="0.07798" X2="0.06452"/>
+                        <Vertex X1="0.07544" X2="0.06452"/>
+                        <Vertex X1="0.07544" X2="0.0475"/>
+                        <Vertex X1="0.00406" X2="0.0475"/>
+                        <Vertex X1="0.00406" X2="0.00432"/>
+                    </Polygon>
+                </Primitives>
+            </Metal>
+            <Metal ID="11" Name=" 'Top_cutout'">
+                <FillColor R="156" G="120" B="19" a="255"/>
+                <EdgeColor R="156" G="120" B="19" a="255"/>
+                <Primitives>
+                    <Polygon Priority="200" Elevation="7.874E-4" NormDir="2" QtyVertices="4">
+                        <Vertex X1="0.07088" X2="0.00204"/>
+                        <Vertex X1="0.07088" X2="0.00405"/>
+                        <Vertex X1="0.07162" X2="0.00405"/>
+                        <Vertex X1="0.07162" X2="0.00204"/>
+                    </Polygon>
+                </Primitives>
+            </Metal>
+            <Metal ID="12" Name=" 'Top_copper'">
+                <FillColor R="156" G="120" B="19" a="255"/>
+                <EdgeColor R="156" G="120" B="19" a="255"/>
+                <Primitives>
+                    <Polygon Priority="200" Elevation="7.874E-4" NormDir="2" QtyVertices="7">
+                        <Vertex X1="0.07164" X2="0.00202"/>
+                        <Vertex X1="0.07164" X2="0.00407"/>
+                        <Vertex X1="0.07163" X2="0.00408"/>
+                        <Vertex X1="0.07087" X2="0.00408"/>
+                        <Vertex X1="0.07085" X2="0.00406"/>
+                        <Vertex X1="0.07085" X2="0.00203"/>
+                        <Vertex X1="0.07086" X2="0.00202"/>
+                    </Polygon>
+                </Primitives>
+            </Metal>
+            <Metal ID="13" Name=" 'Top_cutout'">
+                <FillColor R="156" G="120" B="19" a="255"/>
+                <EdgeColor R="156" G="120" B="19" a="255"/>
+                <Primitives>
+                    <Polygon Priority="200" Elevation="7.874E-4" NormDir="2" QtyVertices="4">
+                        <Vertex X1="0.0851" X2="0.00204"/>
+                        <Vertex X1="0.0851" X2="0.00405"/>
+                        <Vertex X1="0.08584" X2="0.00405"/>
+                        <Vertex X1="0.08584" X2="0.00204"/>
+                    </Polygon>
+                </Primitives>
+            </Metal>
+            <Metal ID="14" Name=" 'Top_copper'">
+                <FillColor R="156" G="120" B="19" a="255"/>
+                <EdgeColor R="156" G="120" B="19" a="255"/>
+                <Primitives>
+                    <Polygon Priority="200" Elevation="7.874E-4" NormDir="2" QtyVertices="6">
+                        <Vertex X1="0.08586" X2="0.00202"/>
+                        <Vertex X1="0.08586" X2="0.00407"/>
+                        <Vertex X1="0.08585" X2="0.00408"/>
+                        <Vertex X1="0.08509" X2="0.00408"/>
+                        <Vertex X1="0.08508" X2="0.00407"/>
+                        <Vertex X1="0.08508" X2="0.00202"/>
+                    </Polygon>
+                </Primitives>
+            </Metal>
+            <Metal ID="15" Name=" 'Top_cutout'">
+                <FillColor R="156" G="120" B="19" a="255"/>
+                <EdgeColor R="156" G="120" B="19" a="255"/>
+                <Primitives>
+                    <Polygon Priority="200" Elevation="7.874E-4" NormDir="2" QtyVertices="4">
+                        <Vertex X1="0.08332" X2="0.00204"/>
+                        <Vertex X1="0.08332" X2="0.00405"/>
+                        <Vertex X1="0.08406" X2="0.00405"/>
+                        <Vertex X1="0.08406" X2="0.00204"/>
+                    </Polygon>
+                </Primitives>
+            </Metal>
+            <Metal ID="16" Name=" 'Top_copper'">
+                <FillColor R="156" G="120" B="19" a="255"/>
+                <EdgeColor R="156" G="120" B="19" a="255"/>
+                <Primitives>
+                    <Polygon Priority="200" Elevation="7.874E-4" NormDir="2" QtyVertices="7">
+                        <Vertex X1="0.08408" X2="0.00202"/>
+                        <Vertex X1="0.08409" X2="0.00203"/>
+                        <Vertex X1="0.08409" X2="0.00406"/>
+                        <Vertex X1="0.08407" X2="0.00408"/>
+                        <Vertex X1="0.08331" X2="0.00408"/>
+                        <Vertex X1="0.0833" X2="0.00407"/>
+                        <Vertex X1="0.0833" X2="0.00202"/>
+                    </Polygon>
+                </Primitives>
+            </Metal>
+            <Metal ID="17" Name=" 'Top_cutout'">
+                <FillColor R="156" G="120" B="19" a="255"/>
+                <EdgeColor R="156" G="120" B="19" a="255"/>
+                <Primitives>
+                    <Polygon Priority="200" Elevation="7.874E-4" NormDir="2" QtyVertices="4">
+                        <Vertex X1="0.08155" X2="0.00204"/>
+                        <Vertex X1="0.08155" X2="0.00405"/>
+                        <Vertex X1="0.08228" X2="0.00405"/>
+                        <Vertex X1="0.08228" X2="0.00204"/>
+                    </Polygon>
+                </Primitives>
+            </Metal>
+            <Metal ID="18" Name=" 'Top_copper'">
+                <FillColor R="156" G="120" B="19" a="255"/>
+                <EdgeColor R="156" G="120" B="19" a="255"/>
+                <Primitives>
+                    <Polygon Priority="200" Elevation="7.874E-4" NormDir="2" QtyVertices="10">
+                        <Vertex X1="0.0823" X2="0.00202"/>
+                        <Vertex X1="0.08231" X2="0.00203"/>
+                        <Vertex X1="0.08231" X2="0.00406"/>
+                        <Vertex X1="0.0823" X2="0.00407"/>
+                        <Vertex X1="0.0823" X2="0.00408"/>
+                        <Vertex X1="0.08153" X2="0.00408"/>
+                        <Vertex X1="0.08153" X2="0.00407"/>
+                        <Vertex X1="0.08152" X2="0.00406"/>
+                        <Vertex X1="0.08152" X2="0.00203"/>
+                        <Vertex X1="0.08153" X2="0.00202"/>
+                    </Polygon>
+                </Primitives>
+            </Metal>
+            <Metal ID="19" Name=" 'Top_cutout'">
+                <FillColor R="156" G="120" B="19" a="255"/>
+                <EdgeColor R="156" G="120" B="19" a="255"/>
+                <Primitives>
+                    <Polygon Priority="200" Elevation="7.874E-4" NormDir="2" QtyVertices="4">
+                        <Vertex X1="0.07977" X2="0.00204"/>
+                        <Vertex X1="0.07977" X2="0.00405"/>
+                        <Vertex X1="0.08051" X2="0.00405"/>
+                        <Vertex X1="0.08051" X2="0.00204"/>
+                    </Polygon>
+                </Primitives>
+            </Metal>
+            <Metal ID="20" Name=" 'Top_copper'">
+                <FillColor R="156" G="120" B="19" a="255"/>
+                <EdgeColor R="156" G="120" B="19" a="255"/>
+                <Primitives>
+                    <Polygon Priority="200" Elevation="7.874E-4" NormDir="2" QtyVertices="7">
+                        <Vertex X1="0.08053" X2="0.00202"/>
+                        <Vertex X1="0.08053" X2="0.00407"/>
+                        <Vertex X1="0.08052" X2="0.00408"/>
+                        <Vertex X1="0.07976" X2="0.00408"/>
+                        <Vertex X1="0.07974" X2="0.00406"/>
+                        <Vertex X1="0.07974" X2="0.00203"/>
+                        <Vertex X1="0.07975" X2="0.00202"/>
+                    </Polygon>
+                </Primitives>
+            </Metal>
+            <Metal ID="21" Name=" 'Top_cutout'">
+                <FillColor R="156" G="120" B="19" a="255"/>
+                <EdgeColor R="156" G="120" B="19" a="255"/>
+                <Primitives>
+                    <Polygon Priority="200" Elevation="7.874E-4" NormDir="2" QtyVertices="4">
+                        <Vertex X1="0.07799" X2="0.00204"/>
+                        <Vertex X1="0.07799" X2="0.00405"/>
+                        <Vertex X1="0.07873" X2="0.00405"/>
+                        <Vertex X1="0.07873" X2="0.00204"/>
+                    </Polygon>
+                </Primitives>
+            </Metal>
+            <Metal ID="22" Name=" 'Top_copper'">
+                <FillColor R="156" G="120" B="19" a="255"/>
+                <EdgeColor R="156" G="120" B="19" a="255"/>
+                <Primitives>
+                    <Polygon Priority="200" Elevation="7.874E-4" NormDir="2" QtyVertices="6">
+                        <Vertex X1="0.07875" X2="0.00202"/>
+                        <Vertex X1="0.07875" X2="0.00407"/>
+                        <Vertex X1="0.07874" X2="0.00408"/>
+                        <Vertex X1="0.07798" X2="0.00408"/>
+                        <Vertex X1="0.07797" X2="0.00407"/>
+                        <Vertex X1="0.07797" X2="0.00202"/>
+                    </Polygon>
+                </Primitives>
+            </Metal>
+            <Metal ID="23" Name=" 'Top_cutout'">
+                <FillColor R="156" G="120" B="19" a="255"/>
+                <EdgeColor R="156" G="120" B="19" a="255"/>
+                <Primitives>
+                    <Polygon Priority="200" Elevation="7.874E-4" NormDir="2" QtyVertices="4">
+                        <Vertex X1="0.07621" X2="0.00204"/>
+                        <Vertex X1="0.07621" X2="0.00405"/>
+                        <Vertex X1="0.07695" X2="0.00405"/>
+                        <Vertex X1="0.07695" X2="0.00204"/>
+                    </Polygon>
+                </Primitives>
+            </Metal>
+            <Metal ID="24" Name=" 'Top_copper'">
+                <FillColor R="156" G="120" B="19" a="255"/>
+                <EdgeColor R="156" G="120" B="19" a="255"/>
+                <Primitives>
+                    <Polygon Priority="200" Elevation="7.874E-4" NormDir="2" QtyVertices="6">
+                        <Vertex X1="0.07697" X2="0.00202"/>
+                        <Vertex X1="0.07697" X2="0.00407"/>
+                        <Vertex X1="0.07696" X2="0.00408"/>
+                        <Vertex X1="0.0762" X2="0.00408"/>
+                        <Vertex X1="0.07619" X2="0.00407"/>
+                        <Vertex X1="0.07619" X2="0.00202"/>
+                    </Polygon>
+                </Primitives>
+            </Metal>
+            <Metal ID="25" Name=" 'Top_cutout'">
+                <FillColor R="156" G="120" B="19" a="255"/>
+                <EdgeColor R="156" G="120" B="19" a="255"/>
+                <Primitives>
+                    <Polygon Priority="200" Elevation="7.874E-4" NormDir="2" QtyVertices="4">
+                        <Vertex X1="0.07443" X2="0.00204"/>
+                        <Vertex X1="0.07443" X2="0.00405"/>
+                        <Vertex X1="0.07517" X2="0.00405"/>
+                        <Vertex X1="0.07517" X2="0.00204"/>
+                    </Polygon>
+                </Primitives>
+            </Metal>
+            <Metal ID="26" Name=" 'Top_copper'">
+                <FillColor R="156" G="120" B="19" a="255"/>
+                <EdgeColor R="156" G="120" B="19" a="255"/>
+                <Primitives>
+                    <Polygon Priority="200" Elevation="7.874E-4" NormDir="2" QtyVertices="7">
+                        <Vertex X1="0.07519" X2="0.00202"/>
+                        <Vertex X1="0.0752" X2="0.00203"/>
+                        <Vertex X1="0.0752" X2="0.00406"/>
+                        <Vertex X1="0.07518" X2="0.00408"/>
+                        <Vertex X1="0.07442" X2="0.00408"/>
+                        <Vertex X1="0.07441" X2="0.00407"/>
+                        <Vertex X1="0.07441" X2="0.00202"/>
+                    </Polygon>
+                </Primitives>
+            </Metal>
+            <Metal ID="27" Name=" 'Top_cutout'">
+                <FillColor R="156" G="120" B="19" a="255"/>
+                <EdgeColor R="156" G="120" B="19" a="255"/>
+                <Primitives>
+                    <Polygon Priority="200" Elevation="7.874E-4" NormDir="2" QtyVertices="4">
+                        <Vertex X1="0.07266" X2="0.00204"/>
+                        <Vertex X1="0.07266" X2="0.00405"/>
+                        <Vertex X1="0.07339" X2="0.00405"/>
+                        <Vertex X1="0.07339" X2="0.00204"/>
+                    </Polygon>
+                </Primitives>
+            </Metal>
+            <Metal ID="28" Name=" 'Top_copper'">
+                <FillColor R="156" G="120" B="19" a="255"/>
+                <EdgeColor R="156" G="120" B="19" a="255"/>
+                <Primitives>
+                    <Polygon Priority="200" Elevation="7.874E-4" NormDir="2" QtyVertices="10">
+                        <Vertex X1="0.07341" X2="0.00202"/>
+                        <Vertex X1="0.07342" X2="0.00203"/>
+                        <Vertex X1="0.07342" X2="0.00406"/>
+                        <Vertex X1="0.07341" X2="0.00407"/>
+                        <Vertex X1="0.07341" X2="0.00408"/>
+                        <Vertex X1="0.07264" X2="0.00408"/>
+                        <Vertex X1="0.07264" X2="0.00407"/>
+                        <Vertex X1="0.07263" X2="0.00406"/>
+                        <Vertex X1="0.07263" X2="0.00203"/>
+                        <Vertex X1="0.07264" X2="0.00202"/>
+                    </Polygon>
+                </Primitives>
+            </Metal>
+            <Metal ID="29" Name=" 'Top_copper'">
+                <FillColor R="156" G="120" B="19" a="255"/>
+                <EdgeColor R="156" G="120" B="19" a="255"/>
+                <Primitives>
+                    <Polygon Priority="200" Elevation="7.874E-4" NormDir="2" QtyVertices="4">
+                        <Vertex X1="0.07163" X2="0.03886"/>
+                        <Vertex X1="0.07163" X2="0.0475"/>
+                        <Vertex X1="0.00406" X2="0.0475"/>
+                        <Vertex X1="0.00406" X2="0.03886"/>
+                    </Polygon>
+                </Primitives>
+            </Metal>
+            <Metal ID="30" Name=" 'Top_copper'">
+                <FillColor R="156" G="120" B="19" a="255"/>
+                <EdgeColor R="156" G="120" B="19" a="255"/>
+                <Primitives>
+                    <Polygon Priority="200" Elevation="7.874E-4" NormDir="2" QtyVertices="14">
+                        <Vertex X1="0.07722" X2="0.03632"/>
+                        <Vertex X1="0.07722" X2="0.07163"/>
+                        <Vertex X1="0.08331" X2="0.07163"/>
+                        <Vertex X1="0.08331" X2="0.0475"/>
+                        <Vertex X1="0.08179" X2="0.0475"/>
+                        <Vertex X1="0.08179" X2="0.03886"/>
+                        <Vertex X1="0.08687" X2="0.03886"/>
+                        <Vertex X1="0.08687" X2="0.0475"/>
+                        <Vertex X1="0.08433" X2="0.0475"/>
+                        <Vertex X1="0.08433" X2="0.07264"/>
+                        <Vertex X1="0.03099" X2="0.07264"/>
+                        <Vertex X1="0.03099" X2="0.07163"/>
+                        <Vertex X1="0.0762" X2="0.07163"/>
+                        <Vertex X1="0.0762" X2="0.03632"/>
+                    </Polygon>
+                </Primitives>
+            </Metal>
+            <LumpedElement ID="0" Name="termination_resistor_1" Direction="2" Caps="1" R="50.0" C="0.0" L="0.0">
+                <FillColor R="255" G="0" B="0" a="255"/>
+                <EdgeColor R="255" G="0" B="0" a="255"/>
+                <Primitives>
+                    <Box Priority="999">
+                        <P1 X="0.0762" Y="0.036320000000000005" Z="7.874E-4"/>
+                        <P2 X="0.07722" Y="0.03734" Z="0.0"/>
+                    </Box>
+                </Primitives>
+            </LumpedElement>
+            <Excitation Type="0" Name="port_excite_1" Excite="0,0,-1">
+                <FillColor R="255" G="0" B="0" a="255"/>
+                <EdgeColor R="255" G="0" B="0" a="255"/>
+                <Primitives>
+                    <Box Priority="999">
+                        <P1 X="0.0762" Y="0.036320000000000005" Z="7.874E-4"/>
+                        <P2 X="0.07722" Y="0.03734" Z="0.0"/>
+                    </Box>
+                </Primitives>
+            </Excitation>
+            <ProbeBox ID="1" Name="port_ut1" Type="0" Weight="1">
+                <Primitives>
+                    <Box Priority="999">
+                        <P1 X="0.0762" Y="0.036320000000000005" Z="7.874E-4"/>
+                        <P2 X="0.07722" Y="0.03734" Z="0.0"/>
+                    </Box>
+                </Primitives>
+            </ProbeBox>
+            <ProbeBox ID="2" Name="port_it1" Type="1" Weight="-1">
+                <Primitives>
+                    <Box Priority="999">
+                        <P1 X="0.0762" Y="0.036320000000000005" Z="3.937E-4"/>
+                        <P2 X="0.07722" Y="0.03734" Z="3.937E-4"/>
+                    </Box>
+                </Primitives>
+            </ProbeBox>
+        </Properties>
+    </ContinuousStructure>
+</openEMS>
