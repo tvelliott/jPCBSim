@@ -45,3 +45,5 @@ Importing a new design:
 
 
 Sorry for the poor documentation.  Will update later as I get a chance.
+
+Please see the wiki page for some more information.
