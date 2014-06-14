@@ -162,13 +162,6 @@ public class sparmChartPanel extends JPanel
     double stepx = (hr-hl)/10.0;
     double xst = hl+stepx;
 
-    //draw grid lines
-    for( int y=0; y<10-1; y++) {
-      l2d = new Line2D.Double( (double) xst, (double) yt+5.0, (double) xst, (double) yb-5.0);
-      g2d.setPaint(line_color);
-      g2d.draw(l2d);
-      xst += stepx;
-    }
 
     //find min in both datasets
     double min = 0.0;
@@ -223,13 +216,25 @@ public class sparmChartPanel extends JPanel
 
     }
 
+    int n_xtick=10;
+    if( getWidth()>1024 ) n_xtick=20;
+    stepx = (hr-hl)/(double)n_xtick;
+
+    //draw grid lines
+    for( int y=0; y<n_xtick-1; y++) {
+      l2d = new Line2D.Double( (double) xst, (double) yt+5.0, (double) xst, (double) yb-5.0);
+      g2d.setPaint(line_color);
+      g2d.draw(l2d);
+      xst += stepx;
+    }
+
     //draw x / freq axis
     xst = hl-20.0;
     double fst = freq_mhz[0];
     double fend = freq_mhz[freq_mhz.length-1];
-    double fstep = (fend-fst)/10.0;
+    double fstep = (fend-fst)/(double)n_xtick;
     //frequency
-    for( int y=0; y<10+1; y++) {
+    for( int y=0; y<n_xtick+1; y++) {
       g2d.setPaint(Color.black);
       g2d.drawString(String.format("%3.3f",(fst+fstep*(double)y)/1e3), (int) xst, (int)(yb+20));
       xst+=stepx;
