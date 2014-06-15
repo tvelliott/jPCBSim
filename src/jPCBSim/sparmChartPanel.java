@@ -75,6 +75,8 @@ public class sparmChartPanel extends JPanel
 
   public void plotS11_Zin(double freq[], double[][] ri)
   {
+    if(freq==null || freq.length==0) return;
+
     freq_mhz = freq;
     data = ri;
     draw_s11=true;
@@ -84,6 +86,7 @@ public class sparmChartPanel extends JPanel
   }
   public void plotS11(double freq[], double[][] ri)
   {
+    if(freq==null || freq.length==0) return;
     freq_mhz = freq;
     data = ri;
     draw_s11=true;
@@ -92,6 +95,8 @@ public class sparmChartPanel extends JPanel
   }
   public void plotS11_S21(double freq[], double[][] ri)
   {
+    if(freq==null || freq.length==0) return;
+
     freq_mhz = freq;
     data = ri;
     draw_s11=true;
@@ -161,6 +166,8 @@ public class sparmChartPanel extends JPanel
     double hr = w-inset1;
     double stepx = (hr-hl)/10.0;
     double xst = hl+stepx;
+
+    if(data==null || data.length==0) return;
 
 
     //find min in both datasets

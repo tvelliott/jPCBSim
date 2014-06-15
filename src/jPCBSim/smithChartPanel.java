@@ -67,6 +67,7 @@ public class smithChartPanel extends JPanel implements Runnable
 
   public void plotS11(double freq[], double[][] ri)
   {
+    if(freq==null || freq.length==0) return;
     freq_mhz = freq;
     data = ri;
     draw_s11=true;
@@ -75,6 +76,7 @@ public class smithChartPanel extends JPanel implements Runnable
   }
   public void plotS11_S21(double freq[], double[][] ri)
   {
+    if(freq==null || freq.length==0) return;
     freq_mhz = freq;
     data = ri;
     draw_s11=true;
