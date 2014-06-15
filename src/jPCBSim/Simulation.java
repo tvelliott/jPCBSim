@@ -36,6 +36,8 @@ public class Simulation
 
   Properties prop;
 
+  PCBSimClient parent;
+
 //Defaults
   public String fdtd_fmax;
   public String fdtd_maxsteps;
@@ -108,12 +110,17 @@ public class Simulation
     readConfig();
   }
 
-  public Simulation(String sim_name)
+  public Simulation(PCBSimClient client, String sim_name)
   {
+    parent = client;
     prop = new Properties();
     reset_to_defaults();
     this.sim_name = sim_name;
     readConfig();
+  }
+
+  public void setStatus(String str) {
+    parent.setStatus(str);
   }
 
   public void abort()

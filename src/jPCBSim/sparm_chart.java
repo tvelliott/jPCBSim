@@ -80,6 +80,8 @@ public class sparm_chart extends JPanel implements Runnable
   {
     while(true) {
       try {
+        do_update_now=false;
+
         this.stop_freq = Double.valueOf(simulation.fdtd_fmax) * Double.valueOf(simulation.sparm_chart_fft_stretch_factor);
         this.start_freq = 0;
         this.port1_ref= Double.valueOf(simulation.port1_resistance);
@@ -88,9 +90,11 @@ public class sparm_chart extends JPanel implements Runnable
         double[][] sparms = DFT.get_sparm2p(DFT, simulation, start_freq, stop_freq, port1_ref, port2_ref);
         double delta_freq = (stop_freq-start_freq)/sparms[0].length;
 
+        simulation.setStatus("Processing FFT on TD data...");
         update_dataset( sparms, delta_freq );
 
         if( do_write_2p && simulation!=null && simulation.do_touchstone_output) {
+          simulation.setStatus("Updating touchstone files...");
           do_write_2p=false;
           if( freq_mhz!=null && sparms!=null ) {
             writeTouchStone wts = new writeTouchStone(simulation);
@@ -99,12 +103,14 @@ public class sparm_chart extends JPanel implements Runnable
         }
         if( do_write_1p && simulation!=null && simulation.do_touchstone_output) {
           do_write_1p=false;
+          simulation.setStatus("Updating touchstone files...");
           if( freq_mhz!=null && sparms!=null ) {
             writeTouchStone wts = new writeTouchStone(simulation);
             wts.write1p(freq_mhz, sparms);
           }
         }
 
+          simulation.setStatus("");
 
       } catch(Exception e) {
         //e.printStackTrace();

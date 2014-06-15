@@ -83,7 +83,7 @@ public class PCBSimClient extends javax.swing.JFrame
 
     modelView.requestFocus();
     utimer = new java.util.Timer();
-    utimer.schedule(new updateTask(), 1000, 60);
+    utimer.schedule(new updateTask(this), 1000, 60);
 
     // Get the tree's cell renderer. If it is a default
     // cell renderer, customize it.
@@ -330,11 +330,18 @@ public class PCBSimClient extends javax.swing.JFrame
   /////////////////////////////////////////////////////////////////////////
   class updateTask extends java.util.TimerTask
   {
+    PCBSimClient parent;
+    public updateTask(PCBSimClient p) {
+      parent = p;
+    }
 
     public void run()
     {
       try {
         if(do_load_pcb || tree_node_selected) {
+
+
+
           do_load_pcb=false;
 
 
@@ -351,6 +358,7 @@ public class PCBSimClient extends javax.swing.JFrame
             } else {
             }
 
+            Thread.sleep(100);
             sparmchart.updateNow();
             return;
 
@@ -380,7 +388,7 @@ public class PCBSimClient extends javax.swing.JFrame
           String file = fd.getFile();
 
           String sim_name = file.substring(0, file.indexOf("."));
-          simulation = new Simulation(sim_name);
+          simulation = new Simulation(parent,sim_name);
           updateSimFields(simulation);
 
           if (file != null) {
@@ -1780,7 +1788,9 @@ public class PCBSimClient extends javax.swing.JFrame
   private void loadSimulation(String simname)
   {
     try {
-      simulation = new Simulation(simname);
+      setStatus("Loading project "+simname);
+
+      simulation = new Simulation(this,simname);
       modelView.getRenderer().setPCBModel(null);
       Thread.sleep(100);
 
@@ -1861,6 +1871,10 @@ public class PCBSimClient extends javax.swing.JFrame
         frame.setVisible(true);
       }
     });
+  }
+
+  public void setStatus(String status) {
+    jLabel1.setText("Status:  "+status);
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
