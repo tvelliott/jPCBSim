@@ -349,9 +349,9 @@ public class PCBSimClient extends javax.swing.JFrame
           modelView.getRenderer().camera.rotateAroundRightVector(-45);
           modelView.getRenderer().camera.updateView();
 
-          FileDialog fd = new FileDialog(frame, "Select pcb.m model to load", FileDialog.LOAD);
+          FileDialog fd = new FileDialog(frame, "Select .hyp model to load", FileDialog.LOAD);
           fd.setDirectory(System.getProperty("user.home"));
-          fd.setFile("*.m");
+          fd.setFile("*.hyp");
           fd.setVisible(true);
           String file = fd.getFile();
 
