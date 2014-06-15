@@ -1,5 +1,3 @@
-**look for projects folder, binaries on startup.  If missing, guide the user through initializing.
-**copy the examples/default folder to projects folder on first time initialization.
 **lumped elements from eagle output
 **figure out what to do with microstrip vs co-planar excitation
 add re-import pop-up to projects
