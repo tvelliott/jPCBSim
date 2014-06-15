@@ -49,6 +49,7 @@ public class PCBSimClient extends javax.swing.JFrame
 
   private java.util.Timer utimer;
   private volatile boolean do_load_pcb=false;
+  private volatile boolean tree_node_selected=false;
   private pcb_model pcbmodel=null;
   private static PCBSimClient frame=null;
   private sparm_chart sparmchart;
@@ -333,8 +334,31 @@ public class PCBSimClient extends javax.swing.JFrame
     public void run()
     {
       try {
-        if(do_load_pcb) {
+        if(do_load_pcb || tree_node_selected) {
           do_load_pcb=false;
+
+
+          if(tree_node_selected) {
+            tree_node_selected=false;
+            DefaultMutableTreeNode node = (DefaultMutableTreeNode) proj_tree.getLastSelectedPathComponent();
+            TreePath tp = proj_tree.getSelectionPath();
+
+            if (node == null) return;
+
+            Object nodeInfo = node.getUserObject();
+            if (node.isLeaf()) {
+              loadSimulation(node.toString());
+            } else {
+            }
+
+            sparmchart.updateNow();
+            return;
+
+          }
+
+
+
+
           modelView.getRenderer().setPCBModel(null);
           Thread.sleep(100);
 
@@ -385,6 +409,7 @@ public class PCBSimClient extends javax.swing.JFrame
               loadSimulation(sim_name);
               updateSimFields(simulation);
 
+              updateTreeList();
               modelView.requestFocus();
             }
           }
@@ -1748,23 +1773,7 @@ public class PCBSimClient extends javax.swing.JFrame
 
   private void proj_treeValueChanged(javax.swing.event.TreeSelectionEvent evt)  //GEN-FIRST:event_proj_treeValueChanged
   {
-    //System.out.println(evt.toString());
-    DefaultMutableTreeNode node = (DefaultMutableTreeNode) proj_tree.getLastSelectedPathComponent();
-    TreePath tp = proj_tree.getSelectionPath();
-
-    if (node == null) return;
-
-    Object nodeInfo = node.getUserObject();
-    if (node.isLeaf()) {
-      //System.out.println( node );
-      loadSimulation(node.toString());
-    } else {
-    }
-
-    sparmchart.updateNow();
-
-    //updateTreeList();
-    //proj_tree.setSelectionPath(tp);
+    tree_node_selected=true;
 
   }//GEN-LAST:event_proj_treeValueChanged
 
