@@ -1,5 +1,8 @@
 **look for projects folder, binaries on startup.  If missing, guide the user through initializing.
 **copy the examples/default folder to projects folder on first time initialization.
+**lumped elements from eagle output
+**figure out what to do with microstrip vs co-planar excitation
+add re-import pop-up to projects
 find several examples and optimize parameters for distributing.
 documentation
 about dialog
@@ -7,7 +10,6 @@ figure out why model is inverted on axis for antenna and others?
 plots of excitation pulse?
 qucs export (or disable for now)
 "reset to defaults" buttons
-figure out what to do with microstrip vs co-planar excitation
 kappa calculator
 if only 1 port (TP1), then don't show termination resistance for port2 in app
 add ability to save/display notes for a given simulation
@@ -21,10 +23,6 @@ add button for qucs ??
 3D Excitation / Sensor port editor
 view animated E-field (simulation time)
 pdf reports
-add re-import pop-up to projects
-make project selection separate thread
-lumped elements from eagle output
 eagle cad binary / button
 ability to plot time-domain data
 virtual TDR mode  (single reflection runtime)
-
