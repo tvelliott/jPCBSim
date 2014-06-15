@@ -7,7 +7,10 @@ To Run:
 
 In project folder
 
+From command line
 java -jar dist/jPCBSim.jar
+
+In Windows, you can just change to the dist folder and click on jPCBSim.jar  (assuming you have java installed)
 
 
 To Build:
