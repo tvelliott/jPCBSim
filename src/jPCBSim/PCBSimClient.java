@@ -1789,6 +1789,7 @@ public class PCBSimClient extends javax.swing.JFrame
   {
     try {
       setStatus("Loading project "+simname);
+      setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
       simulation = new Simulation(this,simname);
       modelView.getRenderer().setPCBModel(null);
@@ -1811,9 +1812,18 @@ public class PCBSimClient extends javax.swing.JFrame
       setTitle("jPCBSim   "+simname);
     } catch(Exception e) {
     }
-    updateSimFields(simulation);
+    finally {
+      updateSimFields(simulation);
+    }
 
 
+  }
+
+  public void fftCompleted() {
+      setCursor(Cursor.getDefaultCursor());
+  }
+  public void fftStarted() {
+      setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
   }
 
   private void updateTreeList()

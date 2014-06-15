@@ -122,6 +122,12 @@ public class Simulation
   public void setStatus(String str) {
     parent.setStatus(str);
   }
+  public void fftUpdateCompleted() {
+    parent.fftCompleted();
+  }
+  public void fftUpdateStarted() {
+    parent.fftStarted();
+  }
 
   public void abort()
   {

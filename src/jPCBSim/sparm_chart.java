@@ -82,6 +82,8 @@ public class sparm_chart extends JPanel implements Runnable
       try {
         do_update_now=false;
 
+        simulation.fftUpdateStarted();
+
         this.stop_freq = Double.valueOf(simulation.fdtd_fmax) * Double.valueOf(simulation.sparm_chart_fft_stretch_factor);
         this.start_freq = 0;
         this.port1_ref= Double.valueOf(simulation.port1_resistance);
@@ -111,6 +113,7 @@ public class sparm_chart extends JPanel implements Runnable
         }
 
           simulation.setStatus("");
+          simulation.fftUpdateCompleted();
 
       } catch(Exception e) {
         //e.printStackTrace();
