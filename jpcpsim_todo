@@ -1,3 +1,7 @@
+**look for projects folder, binaries on startup.  If missing, guide the user through initializing.
+**copy the examples/default folder to projects folder on first time initialization.
+**make project selection tree use separate thread to handle selections
+**Show busy dialog or something while FFT completes on selecting new project. 
 find several examples and optimize parameters for distributing.
 documentation
 about dialog
