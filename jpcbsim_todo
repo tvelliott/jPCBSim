@@ -27,4 +27,6 @@ add re-import pop-up to projects
 make project selection separate thread
 lumped elements from eagle output
 eagle cad binary / button
+ability to plot time-domain data
+virtual TDR mode  (single reflection runtime)
 
