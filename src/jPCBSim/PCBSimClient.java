@@ -66,6 +66,7 @@ public class PCBSimClient extends javax.swing.JFrame
   {
     initComponents();
 
+    fld = new fileLocationDiaglog();
 
 
     if(args.length>0) {
@@ -79,7 +80,6 @@ public class PCBSimClient extends javax.swing.JFrame
 
     mstrip_frame = new microStrip();
 
-    fld = new fileLocationDiaglog();
 
     modelView.requestFocus();
     utimer = new java.util.Timer();
@@ -340,10 +340,7 @@ public class PCBSimClient extends javax.swing.JFrame
       try {
         if(do_load_pcb || tree_node_selected) {
 
-
-
           do_load_pcb=false;
-
 
           if(tree_node_selected) {
             tree_node_selected=false;
@@ -393,6 +390,7 @@ public class PCBSimClient extends javax.swing.JFrame
 
           if (file != null) {
             file = fd.getDirectory()+"/"+file;
+
 
             exec_external ee = new exec_external();
             String hyp2mat_path = fld.getPath(fileLocationDiaglog.JPCBSIM_HYP2MAT_BIN);
@@ -1791,9 +1789,72 @@ public class PCBSimClient extends javax.swing.JFrame
       setStatus("Loading project "+simname);
       setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
+      //first time loading software, prompt for locations
+      String project_dir = fld.getPath(fileLocationDiaglog.JPCBSIM_PROJECT_DIR);
+      if(project_dir==null || project_dir.length()==0) {
+        fld.show();
+        //try again
+        project_dir = fld.getPath(fileLocationDiaglog.JPCBSIM_PROJECT_DIR);
+        if(project_dir==null || project_dir.length()==0) {
+          System.exit(0);
+        }
+      }
+
+      if(simname.equals("default")) {
+          //need to copy default geometry from resource file
+          try {
+            File file = new File(project_dir+"/default");
+            if(!file.exists()) file.mkdir(); 
+  
+            file = new File(project_dir+"/default/default_pcb.m");
+            if(!file.exists()) {
+              System.out.println("copying default project");
+              InputStream is = getClass().getResourceAsStream("/jPCBSim/default_pcb.m");
+              FileWriter fw = new FileWriter( project_dir+"/default/default_pcb.m");
+              int dat = 0;
+              while(dat>=0) {
+                dat = is.read();
+                fw.write(dat);
+              }
+              is.close();
+              fw.close();
+            }
+            file = new File(project_dir+"/default/port_ut1");
+            if(!file.exists()) {
+              System.out.println("copying default project");
+              InputStream is = getClass().getResourceAsStream("/jPCBSim/port_ut1");
+              FileWriter fw = new FileWriter( project_dir+"/default/port_ut1");
+              int dat = 0;
+              while(dat>=0) {
+                dat = is.read();
+                fw.write(dat);
+              }
+              is.close();
+              fw.close();
+            }
+            file = new File(project_dir+"/default/port_it1");
+            if(!file.exists()) {
+              System.out.println("copying default project");
+              InputStream is = getClass().getResourceAsStream("/jPCBSim/port_it1");
+              FileWriter fw = new FileWriter( project_dir+"/default/port_it1");
+              int dat = 0;
+              while(dat>=0) {
+                dat = is.read();
+                fw.write(dat);
+              }
+              is.close();
+              fw.close();
+            }
+          } catch(Exception e) {
+            e.printStackTrace();
+          }
+      }
+
       simulation = new Simulation(this,simname);
       modelView.getRenderer().setPCBModel(null);
       Thread.sleep(100);
+
+
 
       modelView.getRenderer().camera.setEye(new Vector3d(0, 0, -2));
       modelView.getRenderer().camera.lookAt(new Vector3d(0, 0, 0), new Vector3d(1, 0, 0));

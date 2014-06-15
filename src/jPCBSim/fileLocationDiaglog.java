@@ -32,7 +32,7 @@ import java.util.prefs.Preferences;
 import javax.swing.*;
 import java.io.*;
 
-public class fileLocationDiaglog extends javax.swing.JFrame
+public class fileLocationDiaglog extends javax.swing.JDialog
 {
 
   private Preferences prefs;
@@ -53,6 +53,7 @@ public class fileLocationDiaglog extends javax.swing.JFrame
 
   public fileLocationDiaglog()
   {
+    setModal(true);
     initComponents();
     prefs = Preferences.userRoot().node(this.getClass().getName());
     //fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
