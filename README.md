@@ -28,22 +28,6 @@ In project folder
 type 'ant jar'  to build.
 
 
-
-Initial Configuration:
-
-1) Edit paths using the menu  'edit/preferences'
-
-2) Choose the paths to the openEMS binaries
-
-3) Choose the path for your projects.  
-
-4) Close application
-
-5) Copy the examples/default folder to the project folder you specified.  
-
-6) restart software.  The default example will be opened on startup.
-
-
 Importing a new design:
 
 1) Use hyperlynx 6.3 or greater to export your eagle cad brd file to the .hyp file format.
