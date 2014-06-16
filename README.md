@@ -6,6 +6,7 @@ Front-end and post processing software for simulating planar RF filters and ante
 
 Installation:
 Please see the wiki page for installation / configuration information.
+https://github.com/tvelliott/jPCBSim/wiki
 
 
 To Run:
