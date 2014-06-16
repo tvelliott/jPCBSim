@@ -1,7 +1,12 @@
 jPCBSim
 =======
 
+What is it?
 Front-end and post processing software for simulating planar RF filters and antennas with the openEMS FDTD field solver.
+
+Installation:
+Please see the wiki page for installation / configuration information.
+
 
 To Run:
 
@@ -41,11 +46,9 @@ Initial Configuration:
 
 Importing a new design:
 
-1) Use hyperlynx 6.3 or greater to export your eagle cad brd file
+1) Use hyperlynx 6.3 or greater to export your eagle cad brd file to the .hyp file format.
 
-2) Choose the menu option 'file/import/hyperlynx using hyp2mat'
+2) Choose the menu option 'file/import/hyperlynx using hyp2mat' to import the file using the external converter 'hyp2mat'.
 
 
-Sorry for the poor documentation.  Will update later as I get a chance.
 
-Please see the wiki page for some more information.
