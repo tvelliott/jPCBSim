@@ -1,3 +1,9 @@
+//Not clear on who the original author(s) of this code is/are
+//I may have modified is slightly, but am not the original author
+//I believe it to be public domain.  Please contact me if I should
+//change the attributions or remove from the repository.
+//Thanks, tvelliott
+
 package jPCBSim;
 
 
