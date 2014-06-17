@@ -1,4 +1,16 @@
 package jPCBSim;
+
+//http://www.math.ksu.edu/~bennett/jomacg/
+//Documentation and Source Code
+//The documentation was produced with javadoc and is designed to document the use 
+//of the classes developed for this applet for programmers who want to use the classess 
+//as-is in their own projects. Commented source code is also provided for programmers 
+//who want to modify these classes and also for the applet itself 
+//(which is basically just a user-interface). The code is copyrighted but may be used 
+//freely for non-commercial purposes provided the original source is acknowledged and 
+//the author is informed. Contact the author at bennett@math.ksu.edu
+
+
 /**
     Complex implements a complex number and defines complex
     arithmetic and mathematical functions
