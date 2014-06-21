@@ -345,7 +345,7 @@ public class mesh_model
               Point2D.Double p = e.nextElement();
               double x = p.x;
               double y = p.y;
-              //if(xe.get(String.format("%4.4f", new Double(y).doubleValue()))==null) {
+              if(!simulation.do_filter_edges || xe.get(String.format("%4.4f", new Double(y).doubleValue()))==null) {
                 if(pobj.getMaterial().getMaterialType() != Material.COPPER_VIA) {
 
                   double wl_dist = 1.0 / (Double.valueOf(simulation.fdtd_fmax) * 2.5e-6);
@@ -369,8 +369,8 @@ public class mesh_model
                   xlines_v.addElement(new Double(y));
                   xe.put( String.format("%4.4f", new Double(y).doubleValue()), "" );
                 }
-              //}
-              //if(ye.get(String.format("%4.4f", new Double(x).doubleValue()))==null) {
+              }
+              if(!simulation.do_filter_edges || ye.get(String.format("%4.4f", new Double(x).doubleValue()))==null) {
                 if(pobj.getMaterial().getMaterialType() != Material.COPPER_VIA) {
 
                   double wl_dist = 1.0 / (Double.valueOf(simulation.fdtd_fmax) * 2.5e-6);
@@ -392,7 +392,7 @@ public class mesh_model
                   ylines_v.addElement(new Double(x));
                   ye.put( String.format("%4.4f", new Double(x).doubleValue()), "" );
                 }
-              //}
+              }
 
               int do_all = 0;
               //if( pcbmodel.isOrtho() ) do_all = ycells;

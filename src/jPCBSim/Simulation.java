@@ -98,6 +98,7 @@ public class Simulation
   public boolean do_debug_pec;
   public boolean do_sim_verbose;
   public boolean do_lorentz;
+  public boolean do_filter_edges;
   boolean do_fixed_threads;
   public String sim_threads;
   public String sim_path;
@@ -215,6 +216,7 @@ public class Simulation
         do_lorentz = Boolean.valueOf(prop.getProperty("do_lorentz"));
         do_fixed_threads = Boolean.valueOf(prop.getProperty("do_fixed_threads"));
         do_box_vias = Boolean.valueOf(prop.getProperty("do_box_vias"));
+        do_filter_edges = Boolean.valueOf(prop.getProperty("do_filter_edges"));
         sim_threads= prop.getProperty("sim_threads");
         sim_name= prop.getProperty("sim_name");
 
@@ -282,6 +284,7 @@ public class Simulation
         prop.setProperty("do_sim_verbose",Boolean.toString(do_sim_verbose));
         prop.setProperty("do_lorentz",Boolean.toString(do_lorentz));
         prop.setProperty("do_box_vias",Boolean.toString(do_box_vias));
+        prop.setProperty("do_filter_edges",Boolean.toString(do_filter_edges));
         prop.setProperty("sim_threads",sim_threads);
         prop.setProperty("sim_name",sim_name);
         prop.setProperty("do_fixed_threads",Boolean.toString(do_fixed_threads));
@@ -326,8 +329,9 @@ public class Simulation
     pcb_prop_lorentz_pole_freq= new String("12.57e9");
     pcb_prop_relaxation_time= new String("2.294e-11");
     pcb_thickness_inches = new String("0.0"); //default of 0.0 indicates that user should be prompted for actual thickness
-    do_lorentz=true;
+    do_lorentz=false;
     do_box_vias=true;
+    do_filter_edges=true;
 
     //TODO:
     //need sparm chart variables here
@@ -340,7 +344,7 @@ public class Simulation
     do_airbox=true;
     do_mesh=true;
     do_pml=false;
-    do_dual_edge_mesh=true;
+    do_dual_edge_mesh=false;
     airbox_dist=new String("2.0");
     mesh_resolution=new String("16.0");
     mesh_pcb_z_lines=new String("4.0");
