@@ -289,8 +289,12 @@ public class PCBSimClient extends javax.swing.JFrame
     pcb_plasmafreq.setText(sim.pcb_prop_plasmafreq );
     pcb_relaxtime.setText(sim.pcb_prop_relaxation_time );
     pcb_thickness_inches.setText(sim.pcb_thickness_inches );
-    if(sim.do_lorentz) use_lorentz.setSelected(true);
-    else use_lorentz.setSelected(false);
+
+    //if(sim.do_lorentz) use_lorentz.setSelected(true);
+    //else use_lorentz.setSelected(false);
+    use_lorentz.setSelected(false); //disable for now.  There is a bug that crashes newer versions of openEMS with the Lorentz 
+                                    //functionality enabled.
+
     if(sim.do_box_vias) do_box_vias.setSelected(true);
     else do_box_vias.setSelected(false);
 
@@ -409,7 +413,7 @@ public class PCBSimClient extends javax.swing.JFrame
               else simulation.pcb_thickness_inches = pcb_height;
 
               ee.execute_and_wait(1,
-                                  hyp2mat_path+" -v -o "+simulation.sim_path+simulation.sim_name+"/"+simulation.sim_name+"_pcb.m -f csxcad "+file,
+                                  hyp2mat_path+" --arc-precision=1.0 -v -o "+simulation.sim_path+simulation.sim_name+"/"+simulation.sim_name+"_pcb.m -f csxcad "+file,
                                   simulation.sim_path+simulation.sim_name);
 
               loadSimulation(sim_name);
@@ -1122,8 +1126,8 @@ public class PCBSimClient extends javax.swing.JFrame
         pcb_panel.add(jLabel27);
         jLabel27.setBounds(40, 130, 150, 20);
 
-        use_lorentz.setSelected(true);
         use_lorentz.setText("Use Dispersive Characteristics");
+        use_lorentz.setEnabled(false);
         pcb_panel.add(use_lorentz);
         use_lorentz.setBounds(430, 10, 270, 23);
 
@@ -1136,6 +1140,7 @@ public class PCBSimClient extends javax.swing.JFrame
         jLabel29.setBounds(440, 90, 190, 20);
 
         pcb_relaxtime.setColumns(8);
+        pcb_relaxtime.setEnabled(false);
         pcb_panel.add(pcb_relaxtime);
         pcb_relaxtime.setBounds(570, 120, 110, 30);
 
@@ -1152,10 +1157,12 @@ public class PCBSimClient extends javax.swing.JFrame
         pcb_kappa.setBounds(190, 120, 110, 30);
 
         pcb_plasmafreq.setColumns(8);
+        pcb_plasmafreq.setEnabled(false);
         pcb_panel.add(pcb_plasmafreq);
         pcb_plasmafreq.setBounds(580, 40, 110, 30);
 
         pcb_lorentzpolefreq.setColumns(8);
+        pcb_lorentzpolefreq.setEnabled(false);
         pcb_panel.add(pcb_lorentzpolefreq);
         pcb_lorentzpolefreq.setBounds(620, 80, 110, 30);
 

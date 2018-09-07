@@ -38,6 +38,7 @@ import javax.xml.bind.annotation.XmlValue;
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBContext;
+import javax.xml.stream.*;
 
 import java.io.*;
 import java.util.*;
@@ -591,7 +592,17 @@ public class openEMSWriter
       //write the XML configuration out
       File file_out = new File(simulation.sim_path+simulation.sim_name+"/openems_simulation.xml");
       FileOutputStream ostream = new FileOutputStream(file_out);
-      JAXB.marshal(openems, ostream);
+
+      //XMLStreamWriter xmlStreamWriter =
+       //            XMLOutputFactory.newInstance().createXMLStreamWriter( ostream );
+
+
+      JAXBContext context = JAXBContext.newInstance(OpenEMS.class);
+      Marshaller m = context.createMarshaller();
+      m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+      m.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
+
+      m.marshal(openems, ostream);
 
       System.out.println("wrote configuration.");
 

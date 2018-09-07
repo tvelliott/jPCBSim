@@ -1278,8 +1278,8 @@
                         </Component>
                         <Component class="javax.swing.JCheckBox" name="use_lorentz">
                           <Properties>
-                            <Property name="selected" type="boolean" value="true"/>
                             <Property name="text" type="java.lang.String" value="Use Dispersive Characteristics"/>
+                            <Property name="enabled" type="boolean" value="false"/>
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -1310,6 +1310,7 @@
                         <Component class="javax.swing.JTextField" name="pcb_relaxtime">
                           <Properties>
                             <Property name="columns" type="int" value="8"/>
+                            <Property name="enabled" type="boolean" value="false"/>
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -1350,6 +1351,7 @@
                         <Component class="javax.swing.JTextField" name="pcb_plasmafreq">
                           <Properties>
                             <Property name="columns" type="int" value="8"/>
+                            <Property name="enabled" type="boolean" value="false"/>
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -1360,6 +1362,7 @@
                         <Component class="javax.swing.JTextField" name="pcb_lorentzpolefreq">
                           <Properties>
                             <Property name="columns" type="int" value="8"/>
+                            <Property name="enabled" type="boolean" value="false"/>
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
