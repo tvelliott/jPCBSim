@@ -47,6 +47,7 @@ import java.awt.geom.*;
 public class openEMSWriter
 {
 
+  private int port_number=0;
   private int port_count=0;
   boolean do_swap_ports=false;
   String openems_path="";
@@ -67,7 +68,7 @@ public class openEMSWriter
   public void writeOpenEMSConfig(pcb_model pcbmodel)
   {
 
-    port_count=0;
+    port_number=0;
 
     mesh_model meshmodel = pcbmodel.getMeshModel();
 
@@ -136,6 +137,7 @@ public class openEMSWriter
 
     int id = 0;
 
+    port_count=0;
 
     Vector pcb_obj_v = pcbmodel.getPCBObjectVector();
     Enumeration<pcb_object> e = pcb_obj_v.elements();
@@ -342,28 +344,8 @@ public class openEMSWriter
       } else if(po.getMaterial().getMaterialType() == Material.EXCITATION_BOX) {
 
 
-        /*
-                    port_count++;
-                    int use_port = port_count;
-                    if(do_swap_ports) {
-                      if(port_count==1) use_port=2;
-                      if(port_count==2) use_port=1;
-                    }
-
-                    //use name preferably
-                    if(po.getMaterial().getName().indexOf("1")>=0) {
-                      use_port=1;
-                      port_count=1;
-                    }
-                    else if(po.getMaterial().getName().indexOf("2")>=0 || port_count==2) {
-                      use_port=2;
-                    }
-        */
-
-        //force use of names TP1 and TP2
-        if(po.getMaterial().getName().indexOf("TP1")>=0) port_count=1;
-        else if(po.getMaterial().getName().indexOf("TP2")>=0) port_count=2;
-        else continue;
+        port_count++;
+        port_number = new Integer( po.getMaterial().getName().substring(4,5) ).intValue();
 
         //lumped element termination resistor
         OpenEMS.ContinuousStructure.Properties.LumpedElement term_le = of.createOpenEMSContinuousStructurePropertiesLumpedElement();
@@ -372,12 +354,12 @@ public class openEMSWriter
         Primitives.Box term_box = of.createPrimitivesBox();
         term_geom.getBox().add(term_box);
         props.getLumpedElement().add(term_le);
-        if(port_count==1) {
+        if(port_number==1) {
           term_le.setR(simulation.port1_resistance);
           term_le.setC(simulation.port1_capacitance);
           term_le.setL(simulation.port1_inductance);
         } else {
-          term_le.setR(simulation.port2_resistance);
+          term_le.setR(simulation.port2_resistance);  //note that non-excitation ports all use "port2" resistance value
           term_le.setC(simulation.port2_capacitance);
           term_le.setL(simulation.port2_inductance);
         }
@@ -390,7 +372,7 @@ public class openEMSWriter
         String a = "";
 
 
-        if(port_count==1) {
+        if(port_number==1) {  //excitation port is red, others are blue
           r = "255";
           g = "0";
           b = "0";
@@ -416,7 +398,7 @@ public class openEMSWriter
         term_le.getEdgeColor().add(edge_color);
 
         //one of the ports has to be excitation, well pick the first one for now.  let the user swap in the front-end
-        if(port_count==1) {
+        if(port_number==1) {
           Excitation port_ex = of.createExcitation();
           port_ex.setName("port_excite_1");
           port_ex.setType("0");
@@ -428,7 +410,7 @@ public class openEMSWriter
         }
 
         term_le.setID(Integer.toString(id++));
-        term_le.setName("termination_resistor_"+Integer.toString(port_count));
+        term_le.setName("termination_resistor_"+Integer.toString(port_number));
         term_box.setPriority("999");
 
         Primitives.Box.P1 p1 = of.createPrimitivesBoxP1();
@@ -459,7 +441,7 @@ public class openEMSWriter
         probe_geom.getBox().add(pbox);
         props.getProbeBox().add(probe_box);
         probe_box.setID(Integer.toString(id++));
-        probe_box.setName("port_ut"+Integer.toString(port_count));
+        probe_box.setName("port_ut"+Integer.toString(port_number));
         probe_box.setType("0"); //voltage
         probe_box.setWeight("1");
         pbox.setPriority("999");
@@ -483,7 +465,7 @@ public class openEMSWriter
         probe_geom.getBox().add(pbox);
         props.getProbeBox().add(probe_box);
         probe_box.setID(Integer.toString(id++));
-        probe_box.setName("port_it"+Integer.toString(port_count));
+        probe_box.setName("port_it"+Integer.toString(port_number));
         probe_box.setType("1"); //current
         probe_box.setWeight("-1");
         pbox.setPriority("999");
