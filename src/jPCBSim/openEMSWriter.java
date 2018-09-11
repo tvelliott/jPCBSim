@@ -594,6 +594,11 @@ public class openEMSWriter
         if(file_del.exists()) file_del.delete();
       }
 
+      for(int i=0; i<9; i++) {
+        File file_del = new File(simulation.sim_path+simulation.sim_name+"/"+simulation.sim_name+".s"+Integer.toString(i+1)+"p");
+        if(file_del.exists()) file_del.delete();
+      }
+
       File file_del = new File(simulation.sim_path+simulation.sim_name+"/ABORT");
       if(file_del.exists()) file_del.delete();
 
@@ -617,7 +622,7 @@ public class openEMSWriter
       if(file.exists()) ports++; 
     }
 
-    System.out.println("\r\nport count: "+ports);
+    //System.out.println("\r\nport count: "+ports);
 
     return ports;
   }

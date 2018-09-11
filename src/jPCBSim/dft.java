@@ -66,7 +66,7 @@ public class dft
 
     for(int n=0;n<simulation.port_count;n++) {
 
-      System.out.println("\r\nreading port "+Integer.toString(n+1)+" data...");
+      //System.out.println("\r\nreading port "+Integer.toString(n+1)+" data...");
       Complex[] portn_u = DFT.get_fft(simulation.sim_path+simulation.sim_name+"/port_ut"+Integer.toString(n+1) );
       Complex[] portn_i = DFT.get_fft(simulation.sim_path+simulation.sim_name+"/port_it"+Integer.toString(n+1) );
 
