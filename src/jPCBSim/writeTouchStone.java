@@ -83,4 +83,52 @@ public class writeTouchStone
     }
   }
 
+  public void writeNp(double[] freq_mhz, double[][] data)
+  {
+    int nports = sim.port_count;
+
+    try {
+      File file = new File(sim.sim_path+"/"+sim.sim_name+"/"+sim.sim_name+".s"+Integer.toString(nports)+"p");
+      PrintWriter pw = new PrintWriter(file);
+
+      pw.println("! jPCBSim: Simulation Results For " +sim.sim_path+"/"+sim.sim_name+" Project.");
+      pw.print("! Frequency       ");
+      int xn=0;
+      int xr=0;
+      int spoff=7;
+      for(int i=0;i<(int)java.lang.Math.pow(nports,2);i++) {
+
+        pw.print(String.format("S%d%d       ", xn+1,xr+1));
+
+        if(++xr==nports) {
+          xr=0;
+          xn++;
+        }
+      }
+      pw.println();
+      pw.println("# MHz  S  RI R  50");
+
+      spoff=7;
+
+      for(int i=0; i<freq_mhz.length; i++) {
+
+          xn = 0;
+          pw.print( String.format("%3.3f   ", new Double(freq_mhz[i]).doubleValue()) );
+
+          for(int nn=0;nn<nports;nn++) {
+            for(int n=0;n<nports;n++) {
+              pw.print( String.format("%3.3f   %3.3f   ", data[spoff+xn][i], data[spoff+xn+1][i]) ); 
+              xn+=2;
+            }
+            pw.println();
+            if(nn!=nports-1) pw.print("   ");
+          }
+
+      }
+
+      pw.close();
+    } catch(Exception e) {
+    }
+  }
+
 }

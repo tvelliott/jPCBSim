@@ -73,7 +73,7 @@ public class dft
       if(n==0) {
         len = portn_u.length;
 
-        sparms = new double[5+(2*simulation.port_count)][len];
+        sparms = new double[7+(2* (int)java.lang.Math.pow(simulation.port_count,2) )][len];
 
         u_fn = new Complex[simulation.port_count][len];
         i_fn = new Complex[simulation.port_count][len];
@@ -113,31 +113,54 @@ public class dft
       }
     }
 
+
+    for(int i=0; i<len; i++) { //TODO: remove this block after fixing elsewhere 
+
+      if(simulation.port_count>1) s21[i] = 20.0 * Math.log10( uf_refn[1][i].div(uf_incn[0][i]).mod() );
+        else s21=null;
+
+      s11[i] = 20.0 * Math.log10( uf_refn[0][i].div(uf_incn[0][i]).mod() );
+
+      if(simulation.port_count>1) sparms[0][i] = s21[i];  //20log10(abs(s21))
+
+      sparms[1][i] = s11[i];  //20log10(abs(s11))
+      sparms[2][i] = u_fn[0][i].div(i_fn[0][i]).mod(); //impedance for single port  (e.g. antenna)
+
+      sparms[3][i] = uf_refn[0][i].div(uf_incn[0][i]).real(); //s11 real
+      sparms[4][i] = uf_refn[0][i].div(uf_incn[0][i]).imag(); //s11 imag
+
+      if(simulation.port_count>1) sparms[5][i] = uf_refn[1][i].div(uf_incn[0][i]).real(); //s21 real
+      if(simulation.port_count>1) sparms[6][i] = uf_refn[1][i].div(uf_incn[0][i]).imag(); //s21 imag
+    }
+
+
     xn = 0;
     xr = 0;
+    int idx=0;
+    int spoff=7;
 
-    //for(int n=0;n<simulation.port_count;n++) {
+    for(int n=0;n<(int)java.lang.Math.pow(simulation.port_count,2);n++) {
 
+      if(xn==simulation.port_count) break;
+
+      //System.out.println(String.format("\r\nworking on S%d%d",xn+1,xr+1));
       for(int i=0; i<len; i++) {
 
-        if(simulation.port_count>1) s21[i] = 20.0 * Math.log10( uf_refn[1][i].div(uf_incn[0][i]).mod() );
-          else s21=null;
+        sparms[spoff+idx][i] = uf_refn[xn][i].div(uf_incn[xr][i]).real(); //s11 real
+        sparms[spoff+idx+1][i] = uf_refn[xn][i].div(uf_incn[xr][i]).imag(); //s11 imag
 
-        s11[i] = 20.0 * Math.log10( uf_refn[0][i].div(uf_incn[0][i]).mod() );
-
-        if(simulation.port_count>1) sparms[0][i] = s21[i];  //20log10(abs(s21))
-
-        sparms[1][i] = s11[i];  //20log10(abs(s11))
-        sparms[2][i] = u_fn[0][i].div(i_fn[0][i]).mod(); //impedance for single port  (e.g. antenna)
-
-        sparms[3][i] = uf_refn[0][i].div(uf_incn[0][i]).real(); //s11 real
-        sparms[4][i] = uf_refn[0][i].div(uf_incn[0][i]).imag(); //s11 imag
-
-        if(simulation.port_count>1) sparms[5][i] = uf_refn[1][i].div(uf_incn[0][i]).real(); //s21 real
-        if(simulation.port_count>1) sparms[6][i] = uf_refn[1][i].div(uf_incn[0][i]).imag(); //s21 imag
       }
 
-    //}
+      idx+=2;
+
+      if(++xr == simulation.port_count) {
+        xr = 0;
+        xn++;
+      } 
+
+    }
+
+
   } catch(Exception e) {
     e.printStackTrace();
   }

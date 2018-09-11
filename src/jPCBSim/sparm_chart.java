@@ -95,20 +95,30 @@ public class sparm_chart extends JPanel implements Runnable
         simulation.setStatus("Processing FFT on TD data...");
         update_dataset( sparms, delta_freq );
 
-        if( do_write_2p && simulation!=null && simulation.do_touchstone_output) {
-          simulation.setStatus("Updating touchstone files...");
-          do_write_2p=false;
-          if( freq_mhz!=null && sparms!=null ) {
-            writeTouchStone wts = new writeTouchStone(simulation);
-            wts.write2p(freq_mhz, sparms);
-          }
+        if( simulation.port_count>2) {
+            simulation.setStatus("Updating touchstone files...");
+            if( freq_mhz!=null && sparms!=null ) {
+              writeTouchStone wts = new writeTouchStone(simulation);
+              wts.writeNp(freq_mhz, sparms);
+            }
         }
-        if( do_write_1p && simulation!=null && simulation.do_touchstone_output) {
-          do_write_1p=false;
-          simulation.setStatus("Updating touchstone files...");
-          if( freq_mhz!=null && sparms!=null ) {
-            writeTouchStone wts = new writeTouchStone(simulation);
-            wts.write1p(freq_mhz, sparms);
+        else {
+
+          if( do_write_2p && simulation!=null && simulation.do_touchstone_output) {
+            simulation.setStatus("Updating touchstone files...");
+            do_write_2p=false;
+            if( freq_mhz!=null && sparms!=null ) {
+              writeTouchStone wts = new writeTouchStone(simulation);
+              wts.write2p(freq_mhz, sparms);
+            }
+          }
+          if( do_write_1p && simulation!=null && simulation.do_touchstone_output) {
+            do_write_1p=false;
+            simulation.setStatus("Updating touchstone files...");
+            if( freq_mhz!=null && sparms!=null ) {
+              writeTouchStone wts = new writeTouchStone(simulation);
+              wts.write1p(freq_mhz, sparms);
+            }
           }
         }
 
