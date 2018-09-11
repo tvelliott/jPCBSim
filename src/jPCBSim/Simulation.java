@@ -190,7 +190,8 @@ public class Simulation
         pcb_prop_lorentz_pole_freq= prop.getProperty("pcb_prop_lorentz_pole_freq");
         pcb_prop_relaxation_time= prop.getProperty("pcb_prop_relaxation_time");
         pcb_thickness_inches= prop.getProperty("pcb_thickness_inches");
-        sparm_chart_fft_stretch_factor = Double.valueOf(prop.getProperty("sparm_chart_fft_stretch_factor"));
+        //sparm_chart_fft_stretch_factor = Double.valueOf(prop.getProperty("sparm_chart_fft_stretch_factor"));
+        sparm_chart_fft_stretch_factor = 1.0; 
         sparm_update_freq_sec = Double.valueOf(prop.getProperty("sparm_update_freq_sec"));
         do_touchstone_output = Boolean.valueOf(prop.getProperty("do_touchstone_output"));
         do_airbox = Boolean.valueOf(prop.getProperty("do_airbox"));
@@ -338,7 +339,8 @@ public class Simulation
     //need sparm chart variables here
     //e.g. 1.033 = stretch 0-3GHz FFT results from 0 to 3.1GHz.  Kludge to match measured FR-4 results without
     //adversly affecting dispersive match on Lorentz test.
-    sparm_chart_fft_stretch_factor = 1.033;
+    //sparm_chart_fft_stretch_factor = 1.033;
+    sparm_chart_fft_stretch_factor = 1.0;
     sparm_update_freq_sec = 15.0;
     do_touchstone_output=true;
 

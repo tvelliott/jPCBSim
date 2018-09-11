@@ -164,8 +164,8 @@ public class sparmChartPanel extends JPanel
 
     double hl = inset1;
     double hr = w-inset1;
-    double stepx = (hr-hl)/10.0;
-    double xst = hl+stepx;
+    double stepx = ((double) hr-(double) hl)/10.0;
+    double xst = (double) hl+(double) stepx;
 
     if(data==null || data.length==0) return;
 

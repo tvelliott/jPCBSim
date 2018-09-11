@@ -215,7 +215,10 @@ public class PCBSimClient extends javax.swing.JFrame
     if( do_touchstone.isSelected() ) sim.do_touchstone_output = true;
 
     sim.sparm_update_freq_sec = new Double(sparm_update_freq.getText()).doubleValue();
-    sim.sparm_chart_fft_stretch_factor = new Double( sparm_stretch_factor.getText()).doubleValue();
+
+    //sim.sparm_chart_fft_stretch_factor = new Double( sparm_stretch_factor.getText()).doubleValue();
+    sim.sparm_chart_fft_stretch_factor = 1.0; 
+
     if( dump_efield_vtr.isSelected()) sim.do_dump_efield=true;
     else sim.do_dump_efield=false;
     if( do_pec_debug.isSelected()) sim.do_debug_pec=true;
@@ -317,7 +320,6 @@ public class PCBSimClient extends javax.swing.JFrame
     //sim output tab
     if( sim.do_touchstone_output ) do_touchstone.setSelected(true);
     sparm_update_freq.setText( new Double(sim.sparm_update_freq_sec).toString() );
-    sparm_stretch_factor.setText( new Double(sim.sparm_chart_fft_stretch_factor).toString() );
     if(sim.do_dump_efield) dump_efield_vtr.setSelected(true);
     else dump_efield_vtr.setSelected(false);
     if(sim.do_debug_pec) do_pec_debug.setSelected(true);
@@ -579,8 +581,6 @@ public class PCBSimClient extends javax.swing.JFrame
         jLabel36 = new javax.swing.JLabel();
         sparm_update_freq = new javax.swing.JTextField();
         jLabel37 = new javax.swing.JLabel();
-        jLabel39 = new javax.swing.JLabel();
-        sparm_stretch_factor = new javax.swing.JTextField();
         simout_reset_default = new javax.swing.JButton();
         do_touchstone = new javax.swing.JCheckBox();
         openems_panel = new javax.swing.JPanel();
@@ -1376,15 +1376,6 @@ public class PCBSimClient extends javax.swing.JFrame
         sp_panel.add(jLabel37);
         jLabel37.setBounds(320, 80, 80, 15);
 
-        jLabel39.setText("S-Parm Stretch Factor:");
-        sp_panel.add(jLabel39);
-        jLabel39.setBounds(30, 120, 170, 15);
-
-        sparm_stretch_factor.setColumns(4);
-        sparm_stretch_factor.setText("1.0");
-        sp_panel.add(sparm_stretch_factor);
-        sparm_stretch_factor.setBounds(200, 109, 48, 30);
-
         simout_reset_default.setText("Reset To Defaults");
         simout_reset_default.setEnabled(false);
         simout_reset_default.addActionListener(new java.awt.event.ActionListener() {
@@ -1396,9 +1387,9 @@ public class PCBSimClient extends javax.swing.JFrame
         simout_reset_default.setBounds(770, 130, 170, 25);
 
         do_touchstone.setSelected(true);
-        do_touchstone.setText("Output Touchstone (.s1p or .s2p)");
+        do_touchstone.setText("Output Touchstone (.s1p, .s2p, .snp)");
         sp_panel.add(do_touchstone);
-        do_touchstone.setBounds(30, 150, 290, 23);
+        do_touchstone.setBounds(30, 120, 290, 23);
 
         jTabbedPane2.addTab("Simulation Output", sp_panel);
 
@@ -2031,7 +2022,6 @@ public class PCBSimClient extends javax.swing.JFrame
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
@@ -2081,7 +2071,6 @@ public class PCBSimClient extends javax.swing.JFrame
     private javax.swing.JButton simout_reset_default;
     private javax.swing.JRadioButton sinusoidal_rb;
     private javax.swing.JPanel sp_panel;
-    private javax.swing.JTextField sparm_stretch_factor;
     private javax.swing.JTextField sparm_update_freq;
     private javax.swing.JButton start_sim;
     private javax.swing.JPanel status_panel;
