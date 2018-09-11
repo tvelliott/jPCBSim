@@ -164,7 +164,7 @@ public class sparmChartPanel extends JPanel
 
     double hl = inset1;
     double hr = w-inset1;
-    double stepx = ((double) hr-(double) hl)/10.0;
+    double stepx = (hr-hl)/10.0;
     double xst = (double) hl+(double) stepx;
 
     if(data==null || data.length==0) return;
@@ -227,6 +227,8 @@ public class sparmChartPanel extends JPanel
     if( getWidth()>1024 ) n_xtick=20;
     stepx = (hr-hl)/(double)n_xtick;
 
+    xst -= stepx;
+
     //draw grid lines
     for( int y=0; y<n_xtick-1; y++) {
       l2d = new Line2D.Double( (double) xst, (double) yt+5.0, (double) xst, (double) yb-5.0);
@@ -243,7 +245,7 @@ public class sparmChartPanel extends JPanel
     //frequency
     for( int y=0; y<n_xtick+1; y++) {
       g2d.setPaint(Color.black);
-      g2d.drawString(String.format("%3.3f",(fst+fstep*(double)y)/1e3), (int) xst, (int)(yb+20));
+      g2d.drawString(String.format("%3.1f",(fst+fstep*(double)y)/1e3), (int) (xst+stepx*0.15), (int)(yb+20));
       xst+=stepx;
     }
 

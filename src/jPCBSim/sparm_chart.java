@@ -148,7 +148,7 @@ public class sparm_chart extends JPanel implements Runnable
           freq_mhz = new double[sparms[0].length];
 
           for(int i=0; i<sparms[0].length; i++) {
-            double x = (start_freq+i*delta_freq)/1.0e9;
+            double x = (start_freq+(double)i*delta_freq)/1.0e9;
             freq_mhz[i] = x * 1.0e3;//to mhz
           }
         }
