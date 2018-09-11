@@ -163,8 +163,9 @@ public class smithChartPanel extends JPanel implements Runnable
 
 
 
-    g2d.setPaint(vswr_color);
-    g2d.drawString("VSWR=2.0, RL=9.5dB  _____", 50,150);
+    //TODO: allow user to add a VSWR/RL label for a given frequency
+    //g2d.setPaint(vswr_color);
+    //g2d.drawString("VSWR=2.0, RL=9.5dB  _____", 50,150);
 
     if(draw_s11) {
       int len = freq_mhz.length;
@@ -175,7 +176,7 @@ public class smithChartPanel extends JPanel implements Runnable
       g2d.setStroke(bs);
 
       g2d.setPaint(fg);
-      g2d.drawString(String.format("Frequency Range: %1.1f MHz to %1.1f MHz",freq_mhz[0],freq_mhz[len-1]), 50,75);
+      g2d.drawString(String.format("Frequency Range: %3.1f GHz to %3.1f GHz",freq_mhz[0]/1e3,freq_mhz[len-1]/1e3), 50,75);
 
       g2d.setPaint(Color.yellow);
       g2d.drawString("S11 _____", 50,100);
