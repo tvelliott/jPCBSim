@@ -84,6 +84,7 @@ public class Simulation
   public String airbox_mue;
   public String airbox_kapa;
 
+  public int port_count;
 
   public String port1_excitation_voltage;
   public String port1_resistance;

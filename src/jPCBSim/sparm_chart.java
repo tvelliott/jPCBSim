@@ -139,12 +139,7 @@ public class sparm_chart extends JPanel implements Runnable
       do_update_now=false;
 
       boolean do_both=false;
-      for(int i=0; i<sparms[0].length; i++) {
-        if(sparms[0][i]!=sparms[1][i]) {
-          do_both=true;
-          break;
-        }
-      }
+      if(openEMSWriter.getPortCount(simulation) > 1) do_both=true;
 
       if(do_both) {
         do_write_2p=true;

@@ -40,75 +40,107 @@ public class dft
 
     double[][] sparms = null;
 
-    Complex[] port1_u = DFT.get_fft(simulation.sim_path+simulation.sim_name+"/port_ut1");
-    Complex[] port2_u = DFT.get_fft(simulation.sim_path+simulation.sim_name+"/port_ut2");
-    Complex[] port1_i = DFT.get_fft(simulation.sim_path+simulation.sim_name+"/port_it1");
-    Complex[] port2_i = DFT.get_fft(simulation.sim_path+simulation.sim_name+"/port_it2");
+  try {
 
+    //if(simulation.port_count==0) {
+      simulation.port_count = openEMSWriter.getPortCount(simulation);
+    //} 
 
-    int len = port1_u.length;
-    if(port1_i.length < len) len = port1_i.length;
-    if(port2_u==null || port2_u.length ==0) port2_u = port1_u;
-    if(port2_i==null || port2_i.length ==0) port2_i = port1_i;
+    Complex[][] u_fn=null;
+    Complex[][] i_fn=null;
 
-    Complex[] u_f1 = new Complex[len];
-    Complex[] u_f2 = new Complex[len];
-    Complex[] i_f1 = new Complex[len];
-    Complex[] i_f2 = new Complex[len];
+    Complex[][] uf_incn=null;
+    Complex[][] uf_refn=null;
 
-    Complex[] uf_inc1 = new Complex[len];
-    Complex[] uf_inc2 = new Complex[len];
-    Complex[] uf_ref1 = new Complex[len];
-    Complex[] uf_ref2 = new Complex[len];
+    Complex[][] if_incn=null;
+    Complex[][] if_refn=null;
 
-    Complex[] if_inc1 = new Complex[len];
-    Complex[] if_inc2 = new Complex[len];
-    Complex[] if_ref1 = new Complex[len];
-    Complex[] if_ref2 = new Complex[len];
+    double[][] sxx=null;
+    double[] s21=null;
+    double[] s11=null;
 
-    double[] s21 = new double[len];
-    double[] s11 = new double[len];
-    double[] z1 = new double[len];
+    int xn=0;
+    int xr=0;
 
-    sparms = new double[7][len];
+    int len = 0; 
 
-    if( port1_u!=null && port2_u!=null && port1_i!=null && port2_i!=null) {
+    for(int n=0;n<simulation.port_count;n++) {
+
+      System.out.println("\r\nreading port "+Integer.toString(n+1)+" data...");
+      Complex[] portn_u = DFT.get_fft(simulation.sim_path+simulation.sim_name+"/port_ut"+Integer.toString(n+1) );
+      Complex[] portn_i = DFT.get_fft(simulation.sim_path+simulation.sim_name+"/port_it"+Integer.toString(n+1) );
+
+      if(n==0) {
+        len = portn_u.length;
+
+        sparms = new double[5+(2*simulation.port_count)][len];
+
+        u_fn = new Complex[simulation.port_count][len];
+        i_fn = new Complex[simulation.port_count][len];
+
+        uf_incn = new Complex[simulation.port_count][len];
+        uf_refn = new Complex[simulation.port_count][len];
+
+        if_incn = new Complex[simulation.port_count][len];
+        if_refn = new Complex[simulation.port_count][len];
+
+        sxx = new double[simulation.port_count][len];
+        s21 = new double[len];
+        s11 = new double[len];
+      }
+
       for(int i=0; i<len; i++) {
-        u_f1[i] = port1_u[i];
-        u_f2[i] = port2_u[i];
+        u_fn[n][i] = portn_u[i];
+        i_fn[n][i] = portn_i[i];
 
-        i_f1[i] = port1_i[i];
-        i_f2[i] = port2_i[i];
-
-        Complex zrefp1 = new Complex(port1_ref,0);  //most likely 50 ohms
-        Complex zrefp2 = new Complex(port2_ref,0);  //most likely 50 ohms
+        //TODO: allow for multiple excitation ports
+        Complex zrefpn;
+        if(n==0) {  //excitation port
+          zrefpn = new Complex(port1_ref,0);  //user-defined, default of 50 ohms
+        }
+        else { //all other ports
+          zrefpn = new Complex(port2_ref,0);  //user-defined, default of 50 ohms
+        }
         Complex scale = new Complex(0.5,0);
 
-        uf_inc1[i] =  (u_f1[i].plus(i_f1[i].times(zrefp1))).times(scale);
-        uf_inc2[i] =  (u_f2[i].plus(i_f2[i].times(zrefp2))).times(scale);
-        if_inc1[i] =  (i_f1[i].plus(u_f1[i].div(zrefp1))).times(scale);
-        if_inc2[i] =  (i_f2[i].plus(u_f2[i].div(zrefp2))).times(scale);
 
-        uf_ref1[i] = u_f1[i].minus(uf_inc1[i]);
-        uf_ref2[i] = u_f2[i].minus(uf_inc2[i]);
+        uf_incn[n][i] =  (u_fn[n][i].plus(i_fn[n][i].times(zrefpn))).times(scale);
+        if_incn[n][i] =  (i_fn[n][i].plus(u_fn[n][i].div(zrefpn))).times(scale);
 
-        if_ref1[i] = if_inc1[i].minus(i_f1[i]);
-        if_ref2[i] = if_inc2[i].minus(i_f2[i]);
-
-        s21[i] = 20.0 * Math.log10( uf_ref2[i].div(uf_inc1[i]).mod() );
-        s11[i] = 20.0 * Math.log10( uf_ref1[i].div(uf_inc1[i]).mod() );
-
-        sparms[0][i] = s21[i];  //20log10(abs(s21))
-        sparms[1][i] = s11[i];  //20log10(abs(s11))
-        sparms[2][i] = u_f1[i].div(i_f1[i]).mod(); //impedance
-
-        sparms[3][i] = uf_ref1[i].div(uf_inc1[i]).real(); //s11 real
-        sparms[4][i] = uf_ref1[i].div(uf_inc1[i]).imag(); //s11 imag
-        sparms[5][i] = uf_ref2[i].div(uf_inc1[i]).real(); //s21 real
-        sparms[6][i] = uf_ref2[i].div(uf_inc1[i]).imag(); //s21 imag
+        uf_refn[n][i] = u_fn[n][i].minus(uf_incn[n][i]);
+        if_refn[n][i] = if_incn[n][i].minus(i_fn[n][i]);
 
       }
     }
+
+    xn = 0;
+    xr = 0;
+
+    //for(int n=0;n<simulation.port_count;n++) {
+
+      for(int i=0; i<len; i++) {
+
+        if(simulation.port_count>1) s21[i] = 20.0 * Math.log10( uf_refn[1][i].div(uf_incn[0][i]).mod() );
+          else s21=null;
+
+        s11[i] = 20.0 * Math.log10( uf_refn[0][i].div(uf_incn[0][i]).mod() );
+
+        if(simulation.port_count>1) sparms[0][i] = s21[i];  //20log10(abs(s21))
+
+        sparms[1][i] = s11[i];  //20log10(abs(s11))
+        sparms[2][i] = u_fn[0][i].div(i_fn[0][i]).mod(); //impedance for single port  (e.g. antenna)
+
+        sparms[3][i] = uf_refn[0][i].div(uf_incn[0][i]).real(); //s11 real
+        sparms[4][i] = uf_refn[0][i].div(uf_incn[0][i]).imag(); //s11 imag
+
+        if(simulation.port_count>1) sparms[5][i] = uf_refn[1][i].div(uf_incn[0][i]).real(); //s21 real
+        if(simulation.port_count>1) sparms[6][i] = uf_refn[1][i].div(uf_incn[0][i]).imag(); //s21 imag
+      }
+
+    //}
+  } catch(Exception e) {
+    e.printStackTrace();
+  }
 
     return sparms;
   }

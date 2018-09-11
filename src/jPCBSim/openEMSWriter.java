@@ -48,7 +48,6 @@ public class openEMSWriter
 {
 
   private int port_number=0;
-  private int port_count=0;
   boolean do_swap_ports=false;
   String openems_path="";
 
@@ -137,7 +136,7 @@ public class openEMSWriter
 
     int id = 0;
 
-    port_count=0;
+    simulation.port_count=0;
 
     Vector pcb_obj_v = pcbmodel.getPCBObjectVector();
     Enumeration<pcb_object> e = pcb_obj_v.elements();
@@ -344,7 +343,7 @@ public class openEMSWriter
       } else if(po.getMaterial().getMaterialType() == Material.EXCITATION_BOX) {
 
 
-        port_count++;
+        simulation.port_count++;
         port_number = new Integer( po.getMaterial().getName().substring(4,5) ).intValue();
 
         //lumped element termination resistor
@@ -588,15 +587,14 @@ public class openEMSWriter
 
       System.out.println("wrote configuration.");
 
-      File file_del = new File(simulation.sim_path+simulation.sim_name+"/port_ut1");
-      if(file_del.exists()) file_del.delete();
-      file_del = new File(simulation.sim_path+simulation.sim_name+"/port_ut2");
-      if(file_del.exists()) file_del.delete();
-      file_del = new File(simulation.sim_path+simulation.sim_name+"/port_it1");
-      if(file_del.exists()) file_del.delete();
-      file_del = new File(simulation.sim_path+simulation.sim_name+"/port_it2");
-      if(file_del.exists()) file_del.delete();
-      file_del = new File(simulation.sim_path+simulation.sim_name+"/ABORT");
+      for(int i=0; i<9; i++) {
+        File file_del = new File(simulation.sim_path+simulation.sim_name+"/port_ut"+Integer.toString(i+1));
+        if(file_del.exists()) file_del.delete();
+        file_del = new File(simulation.sim_path+simulation.sim_name+"/port_it"+Integer.toString(i+1));
+        if(file_del.exists()) file_del.delete();
+      }
+
+      File file_del = new File(simulation.sim_path+simulation.sim_name+"/ABORT");
       if(file_del.exists()) file_del.delete();
 
       String openems_options = "";
@@ -609,6 +607,19 @@ public class openEMSWriter
       ee.printStackTrace();
     }
 
+  }
+
+  static int getPortCount(Simulation simulation) {
+    int ports=0;
+
+    for(int i=0; i<9; i++) {
+      File file = new File(simulation.sim_path+simulation.sim_name+"/port_ut"+Integer.toString(i+1));
+      if(file.exists()) ports++; 
+    }
+
+    System.out.println("\r\nport count: "+ports);
+
+    return ports;
   }
 
   public void readOpenEMSConfig(pcb_model pcbmodel)
