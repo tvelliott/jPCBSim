@@ -6,10 +6,11 @@ High Priority
 -add ability to specify port resistance via 'value' of TPN component in eagle
 find several examples and optimize parameters for distributing.
 documentation
+update wiki page with current documentation and new examples and hints for eagle (zero line width, spacing, etc)
 plot time-domain data
 copy eagle brd, sch, and hyp files to project dir when doing import
 eagle cad binary / button
-update wiki page with current documentation and new examples and hints for eagle (zero line width, spacing, etc)
+get dispersive materials working again  (Lorentz-Debye model)
 
 Lower priority
 ---------------------------------------------------------------------------

@@ -92,6 +92,8 @@ public class writeTouchStone
       PrintWriter pw = new PrintWriter(file);
 
       pw.println("! jPCBSim: Simulation Results For " +sim.sim_path+"/"+sim.sim_name+" Project.");
+      pw.println("! Port 1 is always the excitation port for the simulation"); 
+      pw.println("! Only S11, S21, S31, S41, S51, S61, S71, S81, S91 valid.  All others set to zero for now");
       pw.print("! Frequency       ");
       int xn=0;
       int xr=0;
@@ -117,7 +119,8 @@ public class writeTouchStone
 
           for(int nn=0;nn<nports;nn++) {
             for(int n=0;n<nports;n++) {
-              pw.print( String.format("%3.3f   %3.3f   ", data[spoff+xn][i], data[spoff+xn+1][i]) ); 
+              if(n==0) pw.print( String.format("%3.3f   %3.3f   ", data[spoff+xn][i], data[spoff+xn+1][i]) ); 
+                else pw.print("0.0   0.0   "); 
               xn+=2;
             }
             pw.println();
