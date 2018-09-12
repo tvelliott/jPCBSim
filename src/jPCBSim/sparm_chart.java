@@ -90,6 +90,13 @@ public class sparm_chart extends JPanel implements Runnable
         this.port2_ref= Double.valueOf(simulation.port2_resistance);
 
         double[][] sparms = DFT.get_sparm2p(DFT, simulation, start_freq, stop_freq, port1_ref, port2_ref);
+
+        if(sparms==null) {
+          do_update_now=false;
+          simulation.fftUpdateCompleted();
+          continue;
+        }
+
         double delta_freq = (stop_freq-start_freq)/sparms[0].length;
 
         simulation.setStatus("Processing FFT on TD data...");

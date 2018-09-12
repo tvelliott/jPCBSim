@@ -70,6 +70,10 @@ public class dft
       Complex[] portn_u = DFT.get_fft(simulation.sim_path+simulation.sim_name+"/port_ut"+Integer.toString(n+1) );
       Complex[] portn_i = DFT.get_fft(simulation.sim_path+simulation.sim_name+"/port_it"+Integer.toString(n+1) );
 
+      if(n>0 && (portn_u.length!=len || portn_i.length!=len) ) {
+        return null;
+      }
+
       if(n==0) {
         len = portn_u.length;
 
