@@ -1867,7 +1867,7 @@ public class PCBSimClient extends javax.swing.JFrame
       pcbmodel = new pcb_model(simulation.sim_path+simulation.sim_name+"/"+simulation.sim_name+"_pcb.m", simulation);
       if(pcbmodel!=null) modelView.getRenderer().setPCBModel(pcbmodel);
 
-      setTitle("jPCBSim   "+simname);
+      setTitle("jPCBSim 2018-09-12  "+simname);
     } catch(Exception e) {
     }
     finally {
