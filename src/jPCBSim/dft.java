@@ -169,7 +169,8 @@ public class dft
 
 
   } catch(Exception e) {
-    e.printStackTrace();
+    //e.printStackTrace();
+    sparms = null;
   }
 
     return sparms;

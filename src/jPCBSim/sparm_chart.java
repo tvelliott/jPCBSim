@@ -89,7 +89,13 @@ public class sparm_chart extends JPanel implements Runnable
         this.port1_ref= Double.valueOf(simulation.port1_resistance);
         this.port2_ref= Double.valueOf(simulation.port2_resistance);
 
-        double[][] sparms = DFT.get_sparm2p(DFT, simulation, start_freq, stop_freq, port1_ref, port2_ref);
+        double[][] sparms=null;
+       try {
+          sparms = DFT.get_sparm2p(DFT, simulation, start_freq, stop_freq, port1_ref, port2_ref);
+        } catch(Exception e) {
+          e.printStackTrace();
+          sparms=null;
+        }
 
         if(sparms==null) {
           do_update_now=false;
@@ -97,40 +103,42 @@ public class sparm_chart extends JPanel implements Runnable
           continue;
         }
 
-        double delta_freq = (stop_freq-start_freq)/sparms[0].length;
+        if(sparms!=null) {
+          double delta_freq = (stop_freq-start_freq)/sparms[0].length;
 
-        simulation.setStatus("Processing FFT on TD data...");
-        update_dataset( sparms, delta_freq );
+          simulation.setStatus("Processing FFT on TD data...");
+          update_dataset( sparms, delta_freq );
 
-        if( simulation.port_count>2) {
-            simulation.setStatus("Updating touchstone files...");
-            if( freq_mhz!=null && sparms!=null ) {
-              writeTouchStone wts = new writeTouchStone(simulation);
-              wts.writeNp(freq_mhz, sparms);
+          if( simulation.port_count>2) {
+              simulation.setStatus("Updating touchstone files...");
+              if( freq_mhz!=null && sparms!=null ) {
+                writeTouchStone wts = new writeTouchStone(simulation);
+                wts.writeNp(freq_mhz, sparms);
+              }
+          }
+          else {
+
+            if( do_write_2p && simulation!=null && simulation.do_touchstone_output) {
+              simulation.setStatus("Updating touchstone files...");
+              do_write_2p=false;
+              if( freq_mhz!=null && sparms!=null ) {
+                writeTouchStone wts = new writeTouchStone(simulation);
+                wts.write2p(freq_mhz, sparms);
+              }
             }
-        }
-        else {
-
-          if( do_write_2p && simulation!=null && simulation.do_touchstone_output) {
-            simulation.setStatus("Updating touchstone files...");
-            do_write_2p=false;
-            if( freq_mhz!=null && sparms!=null ) {
-              writeTouchStone wts = new writeTouchStone(simulation);
-              wts.write2p(freq_mhz, sparms);
+            if( do_write_1p && simulation!=null && simulation.do_touchstone_output) {
+              do_write_1p=false;
+              simulation.setStatus("Updating touchstone files...");
+              if( freq_mhz!=null && sparms!=null ) {
+                writeTouchStone wts = new writeTouchStone(simulation);
+                wts.write1p(freq_mhz, sparms);
+              }
             }
           }
-          if( do_write_1p && simulation!=null && simulation.do_touchstone_output) {
-            do_write_1p=false;
-            simulation.setStatus("Updating touchstone files...");
-            if( freq_mhz!=null && sparms!=null ) {
-              writeTouchStone wts = new writeTouchStone(simulation);
-              wts.write1p(freq_mhz, sparms);
-            }
-          }
         }
 
-          simulation.setStatus("");
-          simulation.fftUpdateCompleted();
+        simulation.setStatus("");
+        simulation.fftUpdateCompleted();
 
       } catch(Exception e) {
         //e.printStackTrace();
