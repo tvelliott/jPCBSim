@@ -3,6 +3,7 @@ Updated 2018-09-11
 High Priority
 ---------------------------------------------------------------------------
 -add N-port simulation outputs >2 ports to s-param and smith chart plots
+-add ability to specify port resistance via 'value' of TPN component in eagle
 find several examples and optimize parameters for distributing.
 documentation
 plot time-domain data
@@ -12,6 +13,7 @@ update wiki page with current documentation and new examples and hints for eagle
 
 Lower priority
 ---------------------------------------------------------------------------
+add volumetric mesh deform view for electric field during simulation  (file dump would be too large in most cases)
 add button for qucs ??
 **lumped elements from eagle output
 **figure out what to do with microstrip vs co-planar excitation
