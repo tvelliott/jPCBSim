@@ -164,8 +164,8 @@ public class smithChartPanel extends JPanel implements Runnable
 
 
     //TODO: allow user to add a VSWR/RL label for a given frequency
-    //g2d.setPaint(vswr_color);
-    //g2d.drawString("VSWR=2.0, RL=9.5dB  _____", 50,150);
+    g2d.setPaint(vswr_color);
+    g2d.drawString("VSWR Circle = 2.0, RL=9.5dB  _____", 50,125);
 
     if(draw_s11) {
       int len = freq_mhz.length;
@@ -198,6 +198,13 @@ public class smithChartPanel extends JPanel implements Runnable
         py = y;
       }
     }
+
+    draw_s21=false; //don't draw S21, it will just confuse everyone.  
+                    //if you draw it realize, that good forward power in a filter
+                    //e.g. 0 dB loss, will result in the plot being on the outside
+                    //of the circle (mag=1.0).  Complete loss will be plotted in 
+                    //the center (mag=0.0).  It is meaningless relative to the 
+                    //chart.
 
     if(draw_s21) {
       int len = freq_mhz.length;
