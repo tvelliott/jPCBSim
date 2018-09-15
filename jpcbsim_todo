@@ -2,7 +2,11 @@ Updated 2018-09-11
 
 High Priority
 ---------------------------------------------------------------------------
+--allow changing of the pcb dielectric thickness and re-import the model (re-write the .m file)
+--come up with model to fit data from "Reconstruction of the Parameters of Debye and Lorentzian Dispersive Media using a Genetic Algorith"  
+  Zhang, Koledintseva, et.al.
 -add N-port simulation outputs >2 ports to s-param and smith chart plots
+-Don't allow selection of projects while a simulation is running
 -add ability to specify port resistance via 'value' of TPN component in eagle
 find several examples and optimize parameters for distributing.
 documentation

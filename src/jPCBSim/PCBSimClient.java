@@ -284,6 +284,7 @@ public class PCBSimClient extends javax.swing.JFrame
     if( sim.boundary_condition_zmax.equals("PMC") ) zmax_pmc.setSelected(true);
     if( sim.boundary_condition_zmax.equals("PML_8") ) zmax_pml8.setSelected(true);
 
+
     //pcb / dielectric tab
     pcb_er.setText(sim.pcb_prop_epsilon );
     pcb_kappa.setText(sim.pcb_prop_kappa );
@@ -293,10 +294,8 @@ public class PCBSimClient extends javax.swing.JFrame
     pcb_relaxtime.setText(sim.pcb_prop_relaxation_time );
     pcb_thickness_inches.setText(sim.pcb_thickness_inches );
 
-    //if(sim.do_lorentz) use_lorentz.setSelected(true);
-    //else use_lorentz.setSelected(false);
-    use_lorentz.setSelected(false); //disable for now.  There is a bug that crashes newer versions of openEMS with the Lorentz 
-                                    //functionality enabled.
+    if(sim.do_lorentz) use_lorentz.setSelected(true);
+    else use_lorentz.setSelected(false);
 
     if(sim.do_box_vias) do_box_vias.setSelected(true);
     else do_box_vias.setSelected(false);
@@ -551,6 +550,7 @@ public class PCBSimClient extends javax.swing.JFrame
         jLabel47 = new javax.swing.JLabel();
         pcb_thickness_inches = new javax.swing.JTextField();
         do_box_vias = new javax.swing.JCheckBox();
+        jLabel39 = new javax.swing.JLabel();
         mesh_panel = new javax.swing.JPanel();
         view_pml = new javax.swing.JCheckBox();
         view_airbox = new javax.swing.JCheckBox();
@@ -1096,12 +1096,11 @@ public class PCBSimClient extends javax.swing.JFrame
 
         pcb_panel.setLayout(null);
 
-        jLabel23.setText("Relaxation Time:");
+        jLabel23.setText("Relaxation Time: (R = L/Trelax)");
         pcb_panel.add(jLabel23);
-        jLabel23.setBounds(440, 130, 130, 20);
+        jLabel23.setBounds(360, 130, 230, 20);
 
-        pcb_presets.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "   ", "FR-4", "Rogers 4003", "Rogers 4360", "Rogers 4450", "Rogers 4835" }));
-        pcb_presets.setEnabled(false);
+        pcb_presets.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "FR-4", "FR408", "FR408HR" }));
         pcb_presets.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pcb_presetsActionPerformed(evt);
@@ -1114,41 +1113,46 @@ public class PCBSimClient extends javax.swing.JFrame
         pcb_panel.add(er_presets);
         er_presets.setBounds(20, 10, 59, 15);
 
-        jLabel25.setText("Epsilon (Er) (permittivity):");
+        jLabel25.setText("Epsilon (Es, FR4=4.178)");
         pcb_panel.add(jLabel25);
         jLabel25.setBounds(40, 50, 190, 20);
 
-        jLabel26.setText("Mue  (permeability)");
+        jLabel26.setText("S/m");
         pcb_panel.add(jLabel26);
-        jLabel26.setBounds(40, 90, 140, 20);
+        jLabel26.setBounds(310, 120, 50, 30);
 
-        jLabel27.setText("Kappa (conductivity)");
+        jLabel27.setText("Kappa (FR4=0.00175)");
         pcb_panel.add(jLabel27);
         jLabel27.setBounds(40, 130, 150, 20);
 
-        use_lorentz.setText("Use Dispersive Characteristics");
-        use_lorentz.setEnabled(false);
+        use_lorentz.setSelected(true);
+        use_lorentz.setText("Use Dispersive Modeling (Es to Einf)");
+        use_lorentz.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                use_lorentzActionPerformed(evt);
+            }
+        });
         pcb_panel.add(use_lorentz);
-        use_lorentz.setBounds(430, 10, 270, 23);
+        use_lorentz.setBounds(370, 10, 330, 23);
 
-        jLabel28.setText("Plasma Frequency:");
+        jLabel28.setText("Plasma Frequency: (L=1/Fpl^2)");
         pcb_panel.add(jLabel28);
-        jLabel28.setBounds(440, 50, 150, 20);
+        jLabel28.setBounds(360, 50, 220, 20);
 
-        jLabel29.setText("Lorentz Pole Frequency:");
+        jLabel29.setText("Lorentz Pole Freq: (C=1/Fpo^2*L)");
         pcb_panel.add(jLabel29);
-        jLabel29.setBounds(440, 90, 190, 20);
+        jLabel29.setBounds(340, 90, 250, 20);
 
         pcb_relaxtime.setColumns(8);
-        pcb_relaxtime.setEnabled(false);
         pcb_panel.add(pcb_relaxtime);
-        pcb_relaxtime.setBounds(570, 120, 110, 30);
+        pcb_relaxtime.setBounds(600, 120, 110, 30);
 
         pcb_er.setColumns(8);
         pcb_panel.add(pcb_er);
         pcb_er.setBounds(230, 40, 110, 30);
 
         pcb_mue.setColumns(8);
+        pcb_mue.setEnabled(false);
         pcb_panel.add(pcb_mue);
         pcb_mue.setBounds(190, 80, 110, 30);
 
@@ -1157,14 +1161,12 @@ public class PCBSimClient extends javax.swing.JFrame
         pcb_kappa.setBounds(190, 120, 110, 30);
 
         pcb_plasmafreq.setColumns(8);
-        pcb_plasmafreq.setEnabled(false);
         pcb_panel.add(pcb_plasmafreq);
-        pcb_plasmafreq.setBounds(580, 40, 110, 30);
+        pcb_plasmafreq.setBounds(600, 40, 110, 30);
 
         pcb_lorentzpolefreq.setColumns(8);
-        pcb_lorentzpolefreq.setEnabled(false);
         pcb_panel.add(pcb_lorentzpolefreq);
-        pcb_lorentzpolefreq.setBounds(620, 80, 110, 30);
+        pcb_lorentzpolefreq.setBounds(600, 80, 110, 30);
 
         pcb_reset_default.setText("Reset To Defaults");
         pcb_reset_default.setEnabled(false);
@@ -1189,6 +1191,10 @@ public class PCBSimClient extends javax.swing.JFrame
         do_box_vias.setText("Use Box Vias");
         pcb_panel.add(do_box_vias);
         do_box_vias.setBounds(710, 10, 140, 23);
+
+        jLabel39.setText("Mue");
+        pcb_panel.add(jLabel39);
+        jLabel39.setBounds(40, 90, 140, 20);
 
         jTabbedPane2.addTab("PCB/Dielectric", pcb_panel);
 
@@ -1233,32 +1239,32 @@ public class PCBSimClient extends javax.swing.JFrame
         mesh_panel.add(filter_edges);
         filter_edges.setBounds(390, 20, 320, 23);
 
-        jLabel40.setText("AirBox Distance From PCB : 1/");
+        jLabel40.setText("AirBox Distance From PCB : ");
         mesh_panel.add(jLabel40);
         jLabel40.setBounds(390, 60, 210, 15);
 
         mesh_res_wavelength.setColumns(10);
         mesh_res_wavelength.setText("16.0");
         mesh_panel.add(mesh_res_wavelength);
-        mesh_res_wavelength.setBounds(540, 90, 114, 30);
+        mesh_res_wavelength.setBounds(590, 90, 114, 30);
 
-        jLabel41.setText("Mesh Resolution  1/");
+        jLabel41.setText("Mesh Resolution  >=10");
         mesh_panel.add(jLabel41);
-        jLabel41.setBounds(390, 95, 150, 20);
+        jLabel41.setBounds(390, 95, 190, 20);
 
         airbox_wavelength1.setColumns(10);
         airbox_wavelength1.setText("16.0");
         mesh_panel.add(airbox_wavelength1);
-        airbox_wavelength1.setBounds(610, 50, 114, 30);
+        airbox_wavelength1.setBounds(590, 50, 114, 30);
 
-        jLabel42.setText("Z-axis PCB Mesh Lines: ");
+        jLabel42.setText("Z-axis PCB Mesh Lines: >=4");
         mesh_panel.add(jLabel42);
-        jLabel42.setBounds(390, 130, 180, 30);
+        jLabel42.setBounds(370, 130, 200, 30);
 
         mesh_zlines.setColumns(8);
         mesh_zlines.setText("4");
         mesh_panel.add(mesh_zlines);
-        mesh_zlines.setBounds(560, 130, 100, 30);
+        mesh_zlines.setBounds(590, 130, 110, 30);
 
         mesh_reset_default.setText("Reset To Defaults");
         mesh_reset_default.setEnabled(false);
@@ -1780,6 +1786,10 @@ public class PCBSimClient extends javax.swing.JFrame
 
   }//GEN-LAST:event_proj_treeValueChanged
 
+    private void use_lorentzActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_use_lorentzActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_use_lorentzActionPerformed
+
   private void loadSimulation(String simname)
   {
     try {
@@ -1867,7 +1877,7 @@ public class PCBSimClient extends javax.swing.JFrame
       pcbmodel = new pcb_model(simulation.sim_path+simulation.sim_name+"/"+simulation.sim_name+"_pcb.m", simulation);
       if(pcbmodel!=null) modelView.getRenderer().setPCBModel(pcbmodel);
 
-      setTitle("jPCBSim 2018-09-12  "+simname);
+      setTitle("jPCBSim 2018-09-15  "+simname);
     } catch(Exception e) {
     }
     finally {
@@ -2022,6 +2032,7 @@ public class PCBSimClient extends javax.swing.JFrame
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
