@@ -323,23 +323,18 @@ public class Simulation
     boundary_condition_zmin = new String("PML_8");
     boundary_condition_zmax = new String("PML_8");
 
-    //FR-4.  These values were arrived at from lots of testing.  should be good defaults for FR-4
-    //pcb_prop_epsilon = new String("4.2");
-    //pcb_prop_mue = new String("1.0");
-    //pcb_prop_kappa = new String("0.0039");
-    //pcb_prop_plasmafreq = new String("5.0e9");
-    //pcb_prop_lorentz_pole_freq= new String("12.57e9");
-    //pcb_prop_relaxation_time= new String("2.294e-11");
-    //pcb_thickness_inches = new String("0.0"); //default of 0.0 indicates that user should be prompted for actual thickness
-    //do_lorentz=false;
-    //do_box_vias=true;
-    //do_filter_edges=true;
-
-    pcb_prop_epsilon = new String("4.2");
+    //These default parameters appear to model the dispersive characteristics of FR4 very good up to 2.5 GHz, and not too bad up to 5GHz 
+    //There is good agreement with the lorentz material paramater extraction experiment described in:
+    //
+    //Journal of Electrical Engineering Vol 53. NO 9/S, 2002, 97-100
+    //EXTRACTION OF LORENTZIAN AND DEBYE PARAMETERS OF DIELECTRIC AND MAGNETIC DISPERSIVE MATERIALS FOR FDTD MODELING
+    //Marina Y. Koledintseva, et.al.
+    //
+    pcb_prop_epsilon = new String("4.178");
     pcb_prop_mue = new String("1.0");
     pcb_prop_kappa = new String("0.00175");
-    pcb_prop_plasmafreq = new String("5.0e9");
-    pcb_prop_lorentz_pole_freq= new String("20e9");
+    pcb_prop_plasmafreq = new String("3.0e9");
+    pcb_prop_lorentz_pole_freq= new String("12.57e9");
     pcb_prop_relaxation_time= new String("5.0e-12");
     pcb_thickness_inches = new String("0.0"); //default of 0.0 indicates that user should be prompted for actual thickness
     do_lorentz=true;
@@ -347,11 +342,7 @@ public class Simulation
     do_filter_edges=true;
 
     //TODO:
-    //need sparm chart variables here
-    //e.g. 1.033 = stretch 0-3GHz FFT results from 0 to 3.1GHz.  Kludge to match measured FR-4 results without
-    //adversly affecting dispersive match on Lorentz test.
-    //sparm_chart_fft_stretch_factor = 1.033;
-    sparm_chart_fft_stretch_factor = 1.0;
+    sparm_chart_fft_stretch_factor = 1.0; //don't use this anymore.  set to 1.0
     sparm_update_freq_sec = 15.0;
     do_touchstone_output=true;
 
