@@ -240,6 +240,9 @@
                               <xs:attribute name="EpsilonPlasmaFrequency" type="xs:string" />
                               <xs:attribute name="EpsilonLorPoleFrequency" type="xs:string" />
                               <xs:attribute name="EpsilonRelaxTime" type="xs:string" />
+                              <xs:attribute name="MuePlasmaFrequency" type="xs:string" />
+                              <xs:attribute name="MueLorPoleFrequency" type="xs:string" />
+                              <xs:attribute name="MueRelaxTime" type="xs:string" />
                             </xs:complexType>
                           </xs:element>
                           <xs:element ref="Weight" minOccurs="0" maxOccurs="unbounded" />

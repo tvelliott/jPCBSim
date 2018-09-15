@@ -213,6 +213,10 @@ public class openEMSWriter
           pcb_property.setEpsilonPlasmaFrequency( simulation.pcb_prop_plasmafreq );
           pcb_property.setEpsilonLorPoleFrequency( simulation.pcb_prop_lorentz_pole_freq );
           pcb_property.setEpsilonRelaxTime( simulation.pcb_prop_relaxation_time );
+
+          pcb_property.setMuePlasmaFrequency( simulation.pcb_prop_plasmafreq );
+          pcb_property.setMueLorPoleFrequency( simulation.pcb_prop_lorentz_pole_freq );
+          pcb_property.setMueRelaxTime( simulation.pcb_prop_relaxation_time );
         } else {
           OpenEMS.ContinuousStructure.Properties.Material pcb_dielectric = of.createOpenEMSContinuousStructurePropertiesMaterial();
           props.getMaterial().add(pcb_dielectric);
