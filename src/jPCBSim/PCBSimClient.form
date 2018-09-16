@@ -1275,14 +1275,14 @@
                         <Component class="javax.swing.JCheckBox" name="use_lorentz">
                           <Properties>
                             <Property name="selected" type="boolean" value="true"/>
-                            <Property name="text" type="java.lang.String" value="Use Dispersive Modeling (Es to Einf)"/>
+                            <Property name="text" type="java.lang.String" value="Use Dispersive Modeling (defaults good to 5GHz)"/>
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="use_lorentzActionPerformed"/>
                           </Events>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="370" y="10" width="330" height="-1"/>
+                              <AbsoluteConstraints x="370" y="10" width="390" height="-1"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -1409,7 +1409,7 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="710" y="10" width="140" height="-1"/>
+                              <AbsoluteConstraints x="780" y="10" width="140" height="-1"/>
                             </Constraint>
                           </Constraints>
                         </Component>

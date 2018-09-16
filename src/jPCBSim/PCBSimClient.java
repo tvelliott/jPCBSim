@@ -1126,14 +1126,14 @@ public class PCBSimClient extends javax.swing.JFrame
         jLabel27.setBounds(40, 130, 150, 20);
 
         use_lorentz.setSelected(true);
-        use_lorentz.setText("Use Dispersive Modeling (Es to Einf)");
+        use_lorentz.setText("Use Dispersive Modeling (defaults good to 5GHz)");
         use_lorentz.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 use_lorentzActionPerformed(evt);
             }
         });
         pcb_panel.add(use_lorentz);
-        use_lorentz.setBounds(370, 10, 330, 23);
+        use_lorentz.setBounds(370, 10, 390, 23);
 
         jLabel28.setText("Plasma Frequency: (L=1/Fpl^2)");
         pcb_panel.add(jLabel28);
@@ -1190,7 +1190,7 @@ public class PCBSimClient extends javax.swing.JFrame
         do_box_vias.setSelected(true);
         do_box_vias.setText("Use Box Vias");
         pcb_panel.add(do_box_vias);
-        do_box_vias.setBounds(710, 10, 140, 23);
+        do_box_vias.setBounds(780, 10, 140, 23);
 
         jLabel39.setText("Mue");
         pcb_panel.add(jLabel39);
