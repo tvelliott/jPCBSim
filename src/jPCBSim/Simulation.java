@@ -312,7 +312,7 @@ public class Simulation
     fdtd_fmax = new String("3e9");
     fdtd_maxsteps = new String("1000000000");
     fdtd_oversample = new String("64");  //affects settings for sparm_chart / FFT
-    fdtd_endlevel = new String("1e-04"); //-40dBm
+    fdtd_endlevel = new String("1e-03"); //-30dBm
     excitation_waveform_type = new String("0"); //gaussian
     excitation_f0 = new String("0");
     excitation_fc = new String("3.0e9"); //20dB cutoff
