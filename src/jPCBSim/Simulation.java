@@ -330,12 +330,12 @@ public class Simulation
     //EXTRACTION OF LORENTZIAN AND DEBYE PARAMETERS OF DIELECTRIC AND MAGNETIC DISPERSIVE MATERIALS FOR FDTD MODELING
     //Marina Y. Koledintseva, et.al.
     //
-    pcb_prop_epsilon = new String("4.178");
+    pcb_prop_epsilon = new String("4.2");
     pcb_prop_mue = new String("1.0");
-    pcb_prop_kappa = new String("0.00175");
-    pcb_prop_plasmafreq = new String("3.0e9");
+    pcb_prop_kappa = new String("0.0039");
+    pcb_prop_plasmafreq = new String("3.8e9");
     pcb_prop_lorentz_pole_freq= new String("12.57e9");
-    pcb_prop_relaxation_time= new String("5.0e-12");
+    pcb_prop_relaxation_time= new String("7.0e-11");
     pcb_thickness_inches = new String("0.0"); //default of 0.0 indicates that user should be prompted for actual thickness
     do_lorentz=true;
     do_box_vias=true;
@@ -350,15 +350,15 @@ public class Simulation
     do_mesh=true;
     do_pml=false;
     do_dual_edge_mesh=false;
-    airbox_dist=new String("2.0");
-    mesh_resolution=new String("16.0");
+    airbox_dist=new String("3.0");
+    mesh_resolution=new String("24.0");
     mesh_pcb_z_lines=new String("4.0");
     airbox_epsilon=new String("1.0");
     airbox_mue=new String("1.0");
     airbox_kapa=new String("5.5e-15");
 
 
-    port1_excitation_voltage=new String("-1"); //1V into Z direction
+    port1_excitation_voltage=new String("100"); //1V into Z direction
     port1_resistance = new String("50.0");
     port1_capacitance = new String("0.0");
     port1_inductance = new String("0.0");

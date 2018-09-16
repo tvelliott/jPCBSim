@@ -405,7 +405,8 @@ public class openEMSWriter
           Excitation port_ex = of.createExcitation();
           port_ex.setName("port_excite_1");
           port_ex.setType("0");
-          port_ex.setExcite("0,0,"+simulation.port1_excitation_voltage);  //need to determine z-direction??
+          //port_ex.setExcite("0,0,"+simulation.port1_excitation_voltage);  //need to determine z-direction??
+          port_ex.setExcite("0,0,100"); //100 ends up being a little over 1V into the 50 ohm port
           port_ex.getPrimitives().add(term_geom);
           port_ex.getFillColor().add(fill_color);
           port_ex.getEdgeColor().add(edge_color);
