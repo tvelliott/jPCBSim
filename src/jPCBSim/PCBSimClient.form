@@ -1244,7 +1244,7 @@
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel25">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="Epsilon (Es, FR4=4.178)"/>
+                            <Property name="text" type="java.lang.String" value="Epsilon (Es, FR4=4.2)"/>
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -1264,7 +1264,7 @@
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel27">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="Kappa (FR4=0.00175)"/>
+                            <Property name="text" type="java.lang.String" value="Kappa (FR4=0.0039)"/>
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

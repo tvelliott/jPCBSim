@@ -1113,7 +1113,7 @@ public class PCBSimClient extends javax.swing.JFrame
         pcb_panel.add(er_presets);
         er_presets.setBounds(20, 10, 59, 15);
 
-        jLabel25.setText("Epsilon (Es, FR4=4.178)");
+        jLabel25.setText("Epsilon (Es, FR4=4.2)");
         pcb_panel.add(jLabel25);
         jLabel25.setBounds(40, 50, 190, 20);
 
@@ -1121,7 +1121,7 @@ public class PCBSimClient extends javax.swing.JFrame
         pcb_panel.add(jLabel26);
         jLabel26.setBounds(310, 120, 50, 30);
 
-        jLabel27.setText("Kappa (FR4=0.00175)");
+        jLabel27.setText("Kappa (FR4=0.0039)");
         pcb_panel.add(jLabel27);
         jLabel27.setBounds(40, 130, 150, 20);
 
