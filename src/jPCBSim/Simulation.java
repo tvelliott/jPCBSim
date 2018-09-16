@@ -323,13 +323,15 @@ public class Simulation
     boundary_condition_zmin = new String("PML_8");
     boundary_condition_zmax = new String("PML_8");
 
-    //These default parameters appear to model the dispersive characteristics of FR4 very good up to 2.5 GHz, and not too bad up to 5GHz 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //These default parameters appear to model the dispersive characteristics of FR4 very good up to 5 GHz.
     //There is good agreement with the lorentz material paramater extraction experiment described in:
     //
     //Journal of Electrical Engineering Vol 53. NO 9/S, 2002, 97-100
     //EXTRACTION OF LORENTZIAN AND DEBYE PARAMETERS OF DIELECTRIC AND MAGNETIC DISPERSIVE MATERIALS FOR FDTD MODELING
     //Marina Y. Koledintseva, et.al.
     //
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     pcb_prop_epsilon = new String("4.2");
     pcb_prop_mue = new String("1.0");
     pcb_prop_kappa = new String("0.0039");
